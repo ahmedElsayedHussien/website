@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProMasky | منصة إدارة المؤسسات التعليمية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Right: Logo -->
+            <a href="{% url 'home' %}" class="header-logo">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>المنصة</span>
+            </a>
+
+            <!-- Center: Navigation Links -->
+            <nav class="header-nav">
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}" class="nav-item active">الرئيسية</a></li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-item">الميزات</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <ul class="mega-links">
+                                    <li><a href="#">إدارة الطلاب</a></li>
+                                    <li><a href="#">الحضور والغياب</a></li>
+                                    <li><a href="#">الإدارة المالية</a></li>
+                                    <li><a href="#">التقارير</a></li>
+                                    <li><a href="#">أولياء الأمور</a></li>
+                                </ul>
+                                <div class="mega-highlight">
+                                    <img src="{% static 'images/admin-dashboard.png' %}" alt="Preview">
+                                    <div class="highlight-text">
+                                        <h4>كل أدوات الإدارة في لوحة واحدة</h4>
+                                        <a href="#" onclick="openDemoModal()" class="btn-text-sm">شاهد الجولة</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="{% url 'pricing' %}" class="nav-item">الأسعار</a>
+                        <div class="mega-menu simple-menu">
+                            <ul class="mega-links">
+                                <li><a href="#">الباقة المجانية</a></li>
+                                <li><a href="#">الباقة الأساسية</a></li>
+                                <li><a href="#">الباقة المتقدمة</a></li>
+                                <li><a href="#">باقة المؤسسات</a></li>
+                                <li><a href="#">مقارنة الباقات</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-item">قصص النجاح</a>
+                        <div class="mega-menu simple-menu">
+                            <ul class="mega-links">
+                                <li><a href="#">مدارس الرياض</a></li>
+                                <li><a href="#">مجموعة النور</a></li>
+                                <li><a href="#">أكاديمية المستقبل</a></li>
+                                <li><a href="#">روضة الأمل</a></li>
+                                <li><a href="#">مدارس الجيل</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-item">انضم كموزع</a>
+                        <div class="mega-menu simple-menu">
+                            <ul class="mega-links">
+                                <li><a href="#">شروط الانضمام</a></li>
+                                <li><a href="#">المزايا والعمولات</a></li>
+                                <li><a href="#">قصص نجاح الشركاء</a></li>
+                                <li><a href="#">التسجيل كشريك</a></li>
+                                <li><a href="#">بوابة الشركاء</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-item">المدونة</a>
+                        <div class="mega-menu simple-menu">
+                            <ul class="mega-links">
+                                <li><a href="#">أحدث المقالات</a></li>
+                                <li><a href="#">نصائح للإدارة</a></li>
+                                <li><a href="#">تحديثات النظام</a></li>
+                                <li><a href="#">قصص ملهمة</a></li>
+                                <li><a href="#">دليل المستخدم</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-item">اتصل بنا</a>
+                        <div class="mega-menu simple-menu">
+                            <ul class="mega-links">
+                                <li><a href="#">الدعم الفني</a></li>
+                                <li><a href="#">المبيعات</a></li>
+                                <li><a href="#">العنوان والموقع</a></li>
+                                <li><a href="#">الأسئلة الشائعة</a></li>
+                                <li><a href="#">طلب عرض سعر</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Left: Actions -->
+            <div class="header-actions">
+                <a href="#" class="btn-login">تسجيل الدخول</a>
+                <a href="{% url 'trial' %}" class="btn-trial-header">اطلب نسخة تجريبية</a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Top Stats Bar (Glass Effect) -->
+            <div class="footer-stats-bar">
+                <div class="stat-item">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>تفعيل خلال 24 ساعة</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>دعم فني مستمر</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>أكثر من 500 مؤسسة تعليمية</span>
+                </div>
+            </div>
+
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <div class="footer-row">
+                    <!-- Column 1: Logo & About -->
+                    <div class="footer-col brand-col">
+                        <div class="footer-logo">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <h2>منصة<br>المنصة</h2>
+                        </div>
+                        <p class="footer-desc">منصة متكاملة لإدارة المدارس والتحصيل الدراسي والتقارير من مكان واحد.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div class="footer-col">
+                        <h3>روابط سريعة</h3>
+                        <ul class="footer-links">
+                            <li><a href="{% url 'home' %}" class="active">الرئيسية</a></li>
+                            <li><a href="#">الميزات</a></li>
+                            <li><a href="{% url 'pricing' %}">الأسعار</a></li>
+                            <li><a href="#">قصص نجاح</a></li>
+                            <li><a href="#" onclick="openDemoModal()">جولة تفاعلية</a></li>
+                            <li><a href="#">حاسبة العائد</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Company -->
+                    <div class="footer-col">
+                        <h3>الشركة</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">من نحن</a></li>
+                            <li><a href="#">المدونة</a></li>
+                            <li><a href="#">انضم كموزع</a></li>
+                            <li><a href="#">سياسة الخصوصية</a></li>
+                            <li><a href="#">الشروط والأحكام</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact -->
+                    <div class="footer-col contact-col">
+                        <h3>تواصل معنا</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <span dir="ltr">+091235 6790</span>
+                            </li>
+                            <li>
+                                <i class="fa-regular fa-envelope"></i>
+                                <span>أحدر الصداب الأزرق المنصة</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-gold-sm">اتصل بنا</a>
+                        <a href="#" class="btn-outline-sm">واتساب</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2026 جميع الحقوق محفوظة — (اسم المنصة)
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">تسجيل الدخول</a>
+                    <a href="#">بوابة الموزعين</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+:root {
+    /* الألوان الأساسية - الهوية البصرية */
+    --primary-emerald: #0F4F46;
+    /* الأخضر الزمردي الظاهر في الصورة 1 */
+    --accent-gold: #F9CC29;
+    /* الذهبي الدافئ للأزرار كما في الصورة 3 */
+    --dark-text: #1A1A1A;
+    --light-grey: #F4F7F6;
+    /* خلفية الأقسام كما في الصورة 2 */
+    --white: #FFFFFF;
+
+    /* الخطوط - نفضل خط Cairo أو Tajawal */
+    --main-font: 'Cairo', sans-serif;
+
+    /* القياسات الثابتة */
+    --container-width: 1200px;
+    --border-radius: 12px;
+    /* انحناء البطاقات في الصور 2 و 4 */
+    --transition: all 0.3s ease;
+}

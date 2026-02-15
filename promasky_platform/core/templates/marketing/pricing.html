@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="pricing-hero">
+    <div class="hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <h1 class="pricing-title">خيارات تسعير مرنة بناءً على عدد طلابك</h1>
+        <p class="pricing-subtitle">جميع ميزات المنصة مضمنة بالكامل: التسعير يتغير فقط بناءً على العدد الفعلي للطلاب في
+            مؤسستك.</p>
+
+        <!-- Toggle Switch -->
+        <div class="pricing-toggle-container">
+            <span class="toggle-label">شهري</span>
+            <label class="switch">
+                <input type="checkbox" id="billingToggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label active">سنوي <span class="badge-save">(توفير 15%)</span></span>
+        </div>
+
+        <!-- Pricing Calculator Card -->
+        <div class="pricing-calculator-card">
+            <div class="calculator-input">
+                <label for="studentRange">حدد عدد الطلاب</label>
+                <div class="student-count-display"><span id="studentCount">320</span> طالب</div>
+                <input type="range" min="50" max="1500" value="320" class="custom-range" id="studentRange">
+                <div class="range-labels">
+                    <span>50</span>
+                    <span>1500</span>
+                </div>
+                <p class="small-note">يمكنك زيادة أو تقليل العدد في أي وقت</p>
+            </div>
+
+            <div class="calculator-output">
+                <div class="price-display">
+                    <span id="priceValue">13,000</span><span class="currency">ج.م</span>
+                    <span class="period" id="pricePeriod">سنوياً</span>
+                </div>
+                <p class="price-note" id="priceNote">يعادل 1,083 شهرياً</p>
+                <p class="no-hidden-fees">بدون رسوم خفية أو التزامات طويلة الأجل</p>
+
+                <button class="btn-green-block" onclick="startTrial()">ابدأ تجربتك الآن</button>
+                <button class="btn-outline-block">تواصل معنا</button>
+                <p class="free-trial-note">تجربة مجانية - لا تتطلب بيانات الدفع</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-grid-section">
+    <div class="hero-container" style="flex-direction: column; align-items: center;">
+        <h2 class="section-title-dark">كل ما تحتاجه لإدارة مدرستك... متاح بالكامل</h2>
+        <p class="section-subtitle-dark">بدون باقات - بدون ميزات إضافية مدفوعة</p>
+
+        <div class="features-grid-icon">
+            <div class="feature-icon-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>إدارة الطلاب والفصول</span>
+            </div>
+            <div class="feature-icon-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>تتبع الحضور والغياب</span>
+            </div>
+            <div class="feature-icon-item">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                <span>تحصيل الرسوم وتنبيهات التأخير</span>
+            </div>
+            <div class="feature-icon-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>تقارير مالية وإدارية متقدمة</span>
+            </div>
+            <div class="feature-icon-item">
+                <i class="fa-regular fa-comments"></i>
+                <span>التواصل مع أولياء الأمور</span>
+            </div>
+            <div class="feature-icon-item">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>إدارة المستخدمين والصلاحيات</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="segments-section">
+    <div class="hero-container" style="flex-direction: column; align-items: center;">
+        <h2 class="section-title-dark">مناسب لجميع أحجام المؤسسات التعليمية</h2>
+
+        <div class="segments-container">
+            <div class="segment-card">
+                <h3>الحضانات الصغيرة</h3>
+                <p>حتى 150 طالب</p>
+            </div>
+            <div class="segment-card featured">
+                <div class="badge-popular">الأكثر شعبية</div>
+                <h3>المدارس المتوسطة</h3>
+                <p>حتى 500 طالب</p>
+            </div>
+            <div class="segment-card">
+                <h3>المدارس الكبيرة</h3>
+                <p>أكثر من 500 طالب</p>
+            </div>
+        </div>
+
+        <div class="trust-indicators">
+            <span><i class="fa-solid fa-shield-halved"></i> نظام آمن وموثوق</span>
+            <span><i class="fa-solid fa-check-circle"></i> مرونة كاملة في تغيير عدد الطلاب</span>
+            <span><i class="fa-solid fa-headset"></i> دعم فني مستمر</span>
+            <span><i class="fa-solid fa-bolt"></i> تفعيل سريع خلال دقائق</span>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="hero-container" style="flex-direction: column; align-items: center;">
+        <h2 class="section-title-dark">أسئلة شائعة</h2>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل يمكن تغيير عدد الطلاب لاحقاً؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    نعم، يمكنك ترقية أو تقليل باقتك في أي وقت من لوحة التحكم، وسيتم احتساب الفرق تلقائياً.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل يشمل السعر جميع الميزات؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    نعم، نحن نؤمن بأنك تستحق الوصول الكامل لكل الأدوات. السعر يشمل كل شيء ولا توجد ميزات مخفية.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل يوجد عقد إلزامي؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    لا، يمكنك الاشتراك شهرياً والإلغاء في أي وقت. الاشتراك السنوي يوفر لك خصماً إضافياً ولكنه اختياري.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل هناك رسوم تأسيس؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    لا توجد رسوم تأسيس. يمكنك البدء فوراً وبشكل مجاني خلال الفترة التجريبية.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <h2>جاهز لبدء تنظيم مدرستك؟</h2>
+        <p>ابدأ التحول إلى إدارة ذكية وواضحة من اليوم الأول.</p>
+        <a href="#" class="btn-green-block" style="max-width: 300px;">احصل على البداية الآن</a>
+    </div>
+</section>
+
+<script>
+    const slider = document.getElementById('studentRange');
+    const studentCountDisplay = document.getElementById('studentCount');
+    const priceValueDisplay = document.getElementById('priceValue');
+    const pricePeriodDisplay = document.getElementById('pricePeriod');
+    const priceNoteDisplay = document.getElementById('priceNote');
+    const billingToggle = document.getElementById('billingToggle');
+    const labels = document.querySelectorAll('.toggle-label');
+
+    const BASE_PRICE_PER_STUDENT_MONTHLY = 40; // Example rate
+    const BASE_FEE_MONTHLY = 500; // Base platform fee
+
+    function calculatePrice() {
+        let students = parseInt(slider.value);
+        studentCountDisplay.textContent = students;
+
+        let isAnnual = !billingToggle.checked; // Checkbox unchecked = Annual (Right side active in CSS usually, but let's sync with text)
+        // Design shows Toggle Right = Monthly? No. Usually Toggle: Left(Monthly) -- Right(Annual).
+        // My HTML: Checkbox. 
+        // Let's assume Checked = Annual for now, or Unchecked = Annual.
+        // Label order: Monthly [Switch] Annual.
+        // If switch is Right (Checked), it's Annual.
+
+        // Toggle Logic Corrected:
+        // HTML: Monthly - Switch - Annual
+        // If Checked -> Annual.
+
+        isAnnual = billingToggle.checked;
+
+        if (isAnnual) {
+            labels[0].classList.remove('active');
+            labels[1].classList.add('active');
+        } else {
+            labels[0].classList.add('active');
+            labels[1].classList.remove('active');
+        }
+
+        // Pricing Algorithm (Mock)
+        // Monthly: (Students * 5) + 200
+        // Annual: ((Students * 5) + 200) * 12 * 0.85 (15% off)
+
+        let monthlyTotal = (students * 4) + 500; // Simple formula
+
+        // Round to nearest 10 or 100
+        monthlyTotal = Math.ceil(monthlyTotal / 10) * 10;
+
+        let finalPrice = 0;
+
+        if (isAnnual) {
+            let annualTotal = monthlyTotal * 12 * 0.85; // 15% discount
+            finalPrice = Math.floor(annualTotal);
+            priceValueDisplay.textContent = finalPrice.toLocaleString();
+            pricePeriodDisplay.textContent = 'سنوياً';
+            priceNoteDisplay.textContent = `يعادل ${Math.floor(finalPrice / 12).toLocaleString()} شهرياً`;
+        } else {
+            finalPrice = monthlyTotal;
+            priceValueDisplay.textContent = finalPrice.toLocaleString();
+            pricePeriodDisplay.textContent = 'شهرياً';
+            priceNoteDisplay.textContent = 'فوترة شهرية مرنة';
+        }
+    }
+
+    slider.addEventListener('input', () => {
+        // Update slider backgound gradient
+        const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.background = `linear-gradient(to right, var(--primary-emerald) ${value}%, #e0e0e0 ${value}%)`;
+        calculatePrice();
+    });
+
+    billingToggle.addEventListener('change', calculatePrice);
+
+    // Initialize
+    billingToggle.checked = true; // Default to Annual
+    const event = new Event('input');
+    slider.dispatchEvent(event); // Trigger initial calc and gradient
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
+
+    function startTrial() {
+        alert('سيتم تحويلك إلى صفحة التسجيل...');
+    }
+</script>
+{% endblock %}

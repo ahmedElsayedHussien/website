@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="trial-page-wrapper">
+    <div class="trial-container">
+        <!-- Left Side: Visuals & Trust -->
+        <div class="trial-visuals">
+            <div class="trial-header-mobile">
+                <h1>ابدأ تجربتك المجانية لمنصة إدارة المدارس</h1>
+                <p>يرجى ملء المعلومات التالية وسيقوم فريقنا بتفعيل حسابك خلال 24 ساعة.</p>
+            </div>
+
+            <div class="trial-image-container">
+                <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="واجهة النظام" class="trial-laptop-img">
+            </div>
+
+            <div class="trial-trust-indicators">
+                <div class="trust-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>تفعيل سريع خلال 24 ساعة</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>جميع الميزات بدون قيود</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>دعم فني مباشر</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-shapes"></i>
+                    <span>مناسب للمدارس والحضانات</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Form -->
+        <div class="trial-form-card">
+            <div class="form-header">
+                <h2>طلب تفعيل النسخة التجريبية المجانية</h2>
+                <p>جميع البيانات تستخدم فقط لتفعيل حسابك.</p>
+            </div>
+
+            <form class="activation-form">
+                <!-- School Info Section -->
+                <div class="form-section-title">معلومات المدرسة</div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>اسم المدرسة</label>
+                        <input type="text" class="form-control" placeholder="اكتب اسم المدرسة">
+                    </div>
+                    <div class="form-group">
+                        <label>نوع المؤسسة</label>
+                        <select class="form-control">
+                            <option value="">(حضانة - مدرسة - أخرى)</option>
+                            <option value="school">مدرسة</option>
+                            <option value="nursery">حضانة</option>
+                            <option value="center">مركز تعليمي</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>العدد التقريبي للطلاب</label>
+                        <input type="number" class="form-control" placeholder="مثال: 500">
+                    </div>
+                    <div class="form-group">
+                        <label>الدولة / المدينة</label>
+                        <input type="text" class="form-control" placeholder="مثال: الرياض">
+                    </div>
+                </div>
+
+                <!-- Admin Info Section -->
+                <div class="form-section-title">معلومات المسؤول</div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" class="form-control" placeholder="اسمك الكريم">
+                    </div>
+                    <div class="form-group">
+                        <label>المنصب</label>
+                        <select class="form-control">
+                            <option value="">(مدير - مالك - مسؤول إداري)</option>
+                            <option value="manager">مدير</option>
+                            <option value="owner">مالك</option>
+                            <option value="admin">مسؤول إداري</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label>عنوان البريد الإلكتروني</label>
+                        <input type="email" class="form-control" placeholder="email@school.com">
+                    </div>
+                </div>
+
+                <!-- Extra Info -->
+                <div class="form-section-title">معلومات إضافية (اختياري)</div>
+
+                <div class="form-group">
+                    <label class="radio-label-q">هل تستخدم نظاماً حالياً؟</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="current_system" value="yes">
+                            <span>نعم</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="current_system" value="no" checked>
+                            <span>لا</span>
+                        </label>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" class="form-control" placeholder="اسم النظام الحالي (إن وجد)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ملاحظات أو احتياجات خاصة</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="privacyCheck">
+                    <label for="privacyCheck">أوافق على سياسة الخصوصية وشروط الاستخدام</label>
+                </div>
+
+                <button type="submit" class="btn-submit-trial">إرسال طلب التفعيل</button>
+                <p class="form-footer-note">سيتم التواصل معك خلال 24 ساعة.</p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-text">
+            <h1>تحكم كامل في إدارة<br>مدرستك ومالياتك</h1>
+            <p>منصة ذكية لإدارة الطلاب، التحصيل، الحضور، والتقارير في نظام واحد متكامل.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'trial' %}" class="btn-gold">ابدأ الآن</a>
+                <button onclick="openDemoModal()" class="btn-outline">شاهد العرض التوضيحي</button>
+            </div>
+            <div class="hero-stats">
+                <p>أكثر من 500 مؤسسة تعليمية تثق بنا • نظام آمن • دعم فني مستمر</p>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="لوحة التحكم"
+                class="hero-img-main">
+        </div>
+    </div>
+</section>
+
+<section class="challenges-section">
+    <div class="hero-container challenge-container">
+        <div class="section-header">
+            <h2>هل تواجه هذه التحديات في إدارة مدرستك؟</h2>
+            <p>مشاكل إدارية ومالية شائعة تواجهها المدارس ورياض الأطفال.</p>
+        </div>
+        <div class="challenges-grid">
+            <div class="challenge-card">
+                <div class="card-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <div class="card-text">
+                    <h3>تأخير في تحصيل الرسوم</h3>
+                    <p>صعوبة في تتبع المدفوعات المتأخرة وتنظيم عملية التحصيل.</p>
+                </div>
+            </div>
+            <div class="challenge-card">
+                <div class="card-icon"><i class="fa-solid fa-chart-column"></i></div>
+                <div class="card-text">
+                    <h3>تقارير مالية غير واضحة</h3>
+                    <p>غياب الرؤية الفورية للإيرادات والمصروفات والأرباح.</p>
+                </div>
+            </div>
+            <div class="challenge-card">
+                <div class="card-icon"><i class="fa-solid fa-users-slash"></i></div>
+                <div class="card-text">
+                    <h3>ضعف التواصل مع أولياء الأمور</h3>
+                    <p>شكاوى متكررة بسبب نقص الشفافية والتحديثات اللحظية.</p>
+                </div>
+            </div>
+            <div class="challenge-card">
+                <div class="card-icon"><i class="fa-solid fa-user-clock"></i></div>
+                <div class="card-text">
+                    <h3>مشاكل في تتبع الحضور</h3>
+                    <p>تسجيل يدوي أو غير دقيق لحضور الطلاب والموظفين.</p>
+                </div>
+            </div>
+        </div>
+        <div class="challenges-cta">
+            <p>إذا كانت هذه المشاكل تبدو مألوفة... فأنت لست وحدك.</p>
+            <a href="#" class="btn-outline-dark">اكتشف كيف نحل هذه التحديات</a>
+        </div>
+    </div>
+</section>
+
+<section class="solution-section">
+    <div class="hero-container">
+
+        <div class="hero-text solution-text">
+            <h2>الحل في منصة واحدة<br>تتحكم في كل شيء</h2>
+            <p>نظام ذكي يجمع الإدارة، التحصيل، المتابعة والتقارير في مكان واحد.</p>
+
+            <div class="solution-features">
+                <div class="feature-item">
+                    <div class="icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="text">
+                        <h3>تحصيل منظم بدون فوضى</h3>
+                        <p>متابعة الأقساط والمدفوعات بشكل واضح وتلقائي.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="text">
+                        <h3>تقارير مالية لحظية</h3>
+                        <p>رؤية فورية للإيرادات والمصروفات والأرباح.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="text">
+                        <h3>تواصل مباشر مع أولياء الأمور</h3>
+                        <p>إشعارات وتحديثات مستمرة تقلل الشكاوى.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="text">
+                        <h3>متابعة حضور دقيقة</h3>
+                        <p>تسجيل ومتابعة حضور الطلاب والموظفين بسهولة.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="{% url 'trial' %}" class="btn-gold">ابدأ تجربتك الآن</a>
+                <button onclick="openDemoModal()" class="btn-text">شاهد كيف يعمل النظام</button>
+            </div>
+            <div class="hero-trust">
+                <span><i class="fa-solid fa-shield-halved"></i> نظام آمن</span>
+                <span><i class="fa-solid fa-check-circle"></i> تقارير فورية</span>
+                <span><i class="fa-solid fa-headset"></i> دعم فني مستمر</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Solution section has image on the Right in LTR, so Left in RTL. The design Image 2 has text Right, Image Left. My grid helper does this. -->
+            <!-- Wait, Image 2 shows Text Right, Tablet Left. -->
+            <!-- My hero-container is flex row. In RTL, first child is Right? No. -->
+            <!-- HTML: Text first, Image second. CSS `direction: rtl`. First child is Right. -->
+            <!-- So I should put Image second in HTML to be on Left? Yes. -->
+            <!-- But I want Image Left? In RTL, `flex-direction: row`. Item 1 is Right, Item 2 is Left. -->
+            <!-- Text (Item 1) -> Right. Image (Item 2) -> Left. -->
+            <!-- So I put Text first in HTML. -->
+            <!-- Wait, the previous code had Text first, Image second. Result: Text Right, Image Left. Correct. -->
+            <!-- For Solution Section (Image 2), Text is Right, Image is Left. Same layout. -->
+            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="المنصة على التابلت"
+                class="solution-img">
+        </div>
+    </div>
+</section>
+
+
+
+<section class="roles-section">
+    <div class="hero-container role-container-col">
+        <div class="section-header">
+            <h2>اختر دورك وشاهد كيف يخدمك النظام</h2>
+            <p>لكل مستخدم تجربة ولوحة تحكم مخصصة تناسب دوره.</p>
+        </div>
+
+        <div class="role-tabs">
+            <div class="role-tab active" onclick="showRole('manager', this)">
+                <div class="icon"><i class="fa-solid fa-school"></i></div>
+                <h3>مدير المدرسة</h3>
+                <p>رؤية شاملة وتحكم كامل</p>
+            </div>
+            <div class="role-tab" onclick="showRole('teacher', this)">
+                <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <h3>المعلم</h3>
+                <p>تنظيم الفصول ومتابعة الطلاب</p>
+            </div>
+            <div class="role-tab" onclick="showRole('parent', this)">
+                <div class="icon"><i class="fa-solid fa-user-group"></i></div>
+                <h3>ولي الأمر</h3>
+                <p>المتابعة والاطمئنان</p>
+            </div>
+        </div>
+
+        <div class="role-content active" id="manager">
+            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="لوحة تحكم المدير"
+                class="role-img">
+            <div class="role-info">
+                <h3>لوحة تحكم المدير: رؤية كاملة وتحكم شامل</h3>
+                <ul class="role-list">
+                    <li><i class="fa-solid fa-check-circle"></i> تمكين التحكم الأول في كل شبر بالمدرسة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تتبع حالة التحصيل والرسوم لجميع الفصول.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تقارير فورية عن أداء المدرسة والطلاب.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> إدارة المستخدمين والصلاحيات بسهولة.</li>
+                </ul>
+                <a href="#" class="btn-outline-green">مشاهدة لوحة الشرح</a>
+            </div>
+        </div>
+
+        <div class="role-content" id="teacher">
+            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="لوحة المعلم"
+                class="role-img">
+            <div class="role-info">
+                <h3>دعم كامل للمعلم في الفصل</h3>
+                <ul class="role-list">
+                    <li><i class="fa-solid fa-check-circle"></i> تحضير الدروس والجداول بضغطة زر.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> رصد الحضور والغياب والسلوك بسهولة.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تواصل فعال مع الإدارة وأولياء الأمور.</li>
+                </ul>
+                <a href="#" class="btn-outline-green">مشاهدة أدوات المعلم</a>
+            </div>
+        </div>
+
+        <div class="role-content" id="parent">
+            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="تطبيق ولي الأمر"
+                class="role-img">
+            <div class="role-info">
+                <h3>اطمئن على ابنك في كل لحظة</h3>
+                <ul class="role-list">
+                    <li><i class="fa-solid fa-check-circle"></i> متابعة الحضور والانصراف لحظياً.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> الاطلاع على الواجبات والدرجات.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> استلام إشعارات فورية من المدرسة.</li>
+                </ul>
+                <a href="#" class="btn-outline-green">جولة في تطبيق ولي الأمر</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="interactive-demo-section">
+    <div class="hero-container demo-container-col">
+        <div class="section-header">
+            <h2>تحكم كامل في إدارة مدرستك من لوحة تحكم واحدة</h2>
+            <p>واجهة توضيحية تسلط الضوء على أهم قدرات الإدارة والإنجاز داخل المنصة.</p>
+        </div>
+
+        <div class="demo-tabs">
+            <button class="demo-tab active" onclick="switchDemo('manager', this)">مدير المدرسة</button>
+            <button class="demo-tab" onclick="switchDemo('teacher', this)">المعلم</button>
+            <button class="demo-tab" onclick="switchDemo('parent', this)">ولي الأمر</button>
+        </div>
+
+        <div class="laptop-wrapper">
+            <div class="laptop-screen">
+                <div class="laptop-bezel">
+                    <div class="camera-dot"></div>
+                    <div class="screen-content">
+                        <img src="{% static 'images/admin-dashboard.png' %}" id="demo-screen-img" alt="واجهة النظام">
+                    </div>
+                </div>
+            </div>
+            <div class="laptop-base"></div>
+
+            <!-- Floating Feature Card - Manager -->
+            <div class="feature-card active" id="demo-card-manager">
+                <h3>تحكم كامل في تحصيل الرسوم</h3>
+                <ul>
+                    <li>تتبع الأقساط المستحقة والمتأخرة</li>
+                    <li>تنبيهات تلقائية دون عناء</li>
+                    <li>تقارير مالية جاهزة في أي وقت</li>
+                    <li>رؤية واضحة لصافي الدخل</li>
+                </ul>
+                <a href="{% url 'pricing' %}" class="btn-green-sm">عرض الباقات</a>
+                <div class="connector-line"></div>
+                <div class="connector-dot"></div>
+            </div>
+
+            <!-- Floating Feature Card - Teacher -->
+            <div class="feature-card" id="demo-card-teacher">
+                <h3>أدوات الفصل الذكية</h3>
+                <ul>
+                    <li>رصد الغياب بضغطة واحدة</li>
+                    <li>إدارة السلوك والملاحظات</li>
+                    <li>جدول الحصص الأسبوعي</li>
+                    <li>التواصل مع أولياء الأمور</li>
+                </ul>
+                <a href="{% url 'pricing' %}" class="btn-green-sm">جرب بنفسك</a>
+                <div class="connector-line"></div>
+                <div class="connector-dot"></div>
+            </div>
+
+            <!-- Floating Feature Card - Parent -->
+            <div class="feature-card" id="demo-card-parent">
+                <h3>متابعة لحظية للأبناء</h3>
+                <ul>
+                    <li>تنبيهات الوصول والمغادرة</li>
+                    <li>الاطلاع على الواجبات والدرجات</li>
+                    <li>رسائل مباشرة من المعلمين</li>
+                    <li>تقارير الأداء الدوري</li>
+                </ul>
+                <a href="#" class="btn-green-sm">حمل التطبيق</a>
+                <div class="connector-line"></div>
+                <div class="connector-dot"></div>
+            </div>
+
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.7;">مرر الفأرة فوق النقاط لاستكشاف المزيد</p>
+    </div>
+</section>
+
+<script>
+    // Asset paths mapping (using Django template syntax in logic requires careful handling if external js, 
+    // but here in template we can use variables or just hardcode paths if specific)
+    // For simplicity, I will just swap the src attribute basics or keep generic.
+    // Assuming same images for now or generic ones.
+
+    function showRole(roleId, tabElement) {
+        // ... existing roles function ...
+        document.querySelectorAll('.role-content').forEach(el => el.classList.remove('active'));
+        document.getElementById(roleId).classList.add('active');
+        document.querySelectorAll('.role-tab').forEach(el => el.classList.remove('active'));
+        tabElement.classList.add('active');
+    }
+
+    function switchDemo(role, tabBtn) {
+        // Update Tabs
+        document.querySelectorAll('.demo-tab').forEach(btn => btn.classList.remove('active'));
+        tabBtn.classList.add('active');
+
+        // Update Screen Image (Logic to swap images based on role)
+        const screenImg = document.getElementById('demo-screen-img');
+        const cardManager = document.getElementById('demo-card-manager');
+        const cardTeacher = document.getElementById('demo-card-teacher');
+        const cardParent = document.getElementById('demo-card-parent');
+
+        // Reset Cards
+        document.querySelectorAll('.feature-card').forEach(card => card.classList.remove('active'));
+
+        if (role === 'manager') {
+            screenImg.src = "{% static 'images/admin-dashboard.png' %}";
+            cardManager.classList.add('active');
+        } else if (role === 'teacher') {
+            // Placeholder or teacher specific image
+            screenImg.src = "{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}";
+            cardTeacher.classList.add('active');
+        } else if (role === 'parent') {
+            // Placeholder or parent specific image
+            screenImg.src = "{% static 'images/dashboard-mockup.png' %}";
+            cardParent.classList.add('active');
+        }
+    }
+</script>
+
+<!-- Watch Demo Modal -->
+<div id="demoModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeDemoModal()">&times;</button>
+        <div class="modal-header">
+            <h2>شاهد كيف تدير مدرستك بذكاء</h2>
+            <p>جولة سريعة داخل النظام - أقل من دقيقة</p>
+        </div>
+        <div class="modal-video-container">
+            <!-- Placeholder for Video - engaging thumbnail with play button -->
+            <div class="video-placeholder" onclick="playDemoVideo()">
+                <img src="{% static 'images/admin-dashboard.png' %}" alt="تتشغيل الفيديو">
+                <div class="play-button-overlay">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+            <!-- Actual Video Element (Hidden initially or load on click) -->
+            <!-- <iframe ... ></iframe> -->
+        </div>
+        <div class="modal-footer">
+            <a href="{% url 'pricing' %}" class="btn-gold">ابدأ تجربتك المجانية الآن</a>
+            <a href="{% url 'pricing' %}" class="btn-outline-dark">عرض الباقات</a>
+        </div>
+        <p class="modal-note">بدون بطاقة ائتمان • تفعيل يدوي خلال 24 ساعة • جميع المميزات متاحة</p>
+    </div>
+</div>
+
+<script>
+    // ... existing scripts ...
+
+    // Demo Modal Logic
+    const demoModal = document.getElementById('demoModal');
+
+    function openDemoModal() {
+        demoModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeDemoModal() {
+        demoModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close on clicking outside
+    demoModal.addEventListener('click', (e) => {
+        if (e.target === demoModal) {
+            closeDemoModal();
+        }
+    });
+
+    function playDemoVideo() {
+        // Replace placeholder with actual video iframe or player
+        const videoContainer = document.querySelector('.video-placeholder');
+        videoContainer.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+</script>
+{% endblock %}

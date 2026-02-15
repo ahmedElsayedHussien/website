@@ -1,0 +1,69 @@
+
+
+/* --- شاشات التابلت (أقل من 1024px) --- */
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 90%; /* تقليل عرض الحاوية لترك هوامش جانبية */
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem; /* تصغير العنوان ليتناسب مع العرض */
+    }
+
+    .roles-section .role-card {
+        width: 30%; /* جعل بطاقات الأدوار تتوزع بشكل مرن */
+    }
+}
+
+/* --- شاشات الموبايل (أقل من 768px) --- */
+@media (max-width: 768px) {
+    /* 1. تنسيق القسم الأول (الصورة 1) */
+    .hero-container {
+        flex-direction: column-reverse; /* وضع النص فوق الصورة على الموبايل */
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+        margin-top: 30px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column; /* جعل الأزرار فوق بعضها لسهولة الضغط */
+        gap: 15px;
+    }
+
+    .btn-outline {
+        margin-right: 0; /* إلغاء الهامش الجانبي */
+    }
+
+    /* 2. تنسيق قسم التحديات (الصورة 2) */
+    .challenges-grid {
+        grid-template-columns: 1fr; /* عرض كرت واحد في كل صف */
+        padding: 0 15px;
+    }
+
+    /* 3. تنسيق قسم "اختر دورك" (الصورة 4) */
+    .role-tabs {
+        flex-direction: column; /* رص البطاقات رأسياً */
+        align-items: center;
+    }
+
+    .role-card {
+        width: 100% !important;
+        max-width: 320px;
+    }
+
+    .role-content {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .role-content img {
+        width: 100%; /* جعل صورة لوحة التحكم تملأ العرض */
+        margin-bottom: 20px;
+    }
+}

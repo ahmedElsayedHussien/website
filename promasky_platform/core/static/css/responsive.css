@@ -1,0 +1,130 @@
+/* --- شاشات التابلت (أقل من 1024px) --- */
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 90%;
+    }
+
+    .hero-text h1,
+    .solution-text h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero-container {
+        padding: 40px 20px;
+    }
+}
+
+/* --- شاشات الموبايل (أقل من 768px) --- */
+@media (max-width: 768px) {
+
+    /* Global Container */
+    .hero-container {
+        flex-direction: column-reverse;
+        /* Text on top? No. Usually Text Top, Image Bottom. Column-reverse puts bottom element first? No. Flex column: Top to Bottom. Reverse: Bottom to Top. 
+        HTML: Text, Image. 
+        Row: Text Left/Right. 
+        Column: Text Top, Image Bottom.
+        Column-reverse: Image Top, Text Bottom.
+        We want Image Top usually? Or Text Top? 
+        Let's do Text Top for Hero (so column).
+        For Solution (Image, Text): We want Image Top (so column). 
+        */
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    /* Override for Solution Section which has Image First in HTML? No, I put Image First in HTML for Solution.
+       So Column: Image Top, Text Bottom. Correct.
+       Hero has Text First, Image Second. 
+       Column: Text Top, Image Bottom. Correct.
+       
+       Wait, in Step 47 diff:
+       Solution HTML: Image (.solution-img), Text (.solution-text).
+       Hero HTML: Text (.hero-text), Image (.hero-image).
+       
+       So `flex-direction: column` will result in:
+       Hero: Text, then Image.
+       Solution: Image, then Text.
+       This is good.
+    */
+
+    .hero-text,
+    .hero-image,
+    .solution-text,
+    .solution-img {
+        max-width: 100%;
+        text-align: center;
+        /* Center text on mobile */
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-features,
+    .solution-features {
+        grid-template-columns: 1fr;
+        /* 1 column for features */
+        text-align: right;
+        /* Keep features text aligned right or center? Design usually center on mobile or right with icon on top? 
+        My CSS for features: Icon Left, Text Right. 
+        On mobile, maybe keep it that way but stack them.
+        */
+    }
+
+    /* Challenges */
+    .challenges-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .challenge-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Roles */
+    .role-tabs {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .role-tab {
+        width: 100%;
+    }
+
+    .role-content {
+        flex-direction: column-reverse;
+        /* Info Top, Image Bottom? Or Image Top? 
+        HTML: Image, Info.
+        Column: Image, Info.
+        Column-reverse: Info, Image.
+        Let's do Image Top. So Column.
+        */
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .role-img,
+    .role-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .role-list li {
+        justify-content: center;
+        /* Center list items */
+    }
+
+    /* Buttons */
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-trust {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
