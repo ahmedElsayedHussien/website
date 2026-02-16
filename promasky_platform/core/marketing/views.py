@@ -9,3 +9,6 @@ def pricing(request):
 
 def trial(request):
     return render(request, 'marketing/trial.html')
+
+def trial_success(request):
+    return render(request, 'marketing/trial_success.html')

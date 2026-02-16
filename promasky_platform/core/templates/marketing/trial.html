@@ -12,7 +12,8 @@
             </div>
 
             <div class="trial-image-container">
-                <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="واجهة النظام" class="trial-laptop-img">
+                <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="واجهة النظام"
+                    class="trial-laptop-img">
             </div>
 
             <div class="trial-trust-indicators">
@@ -42,7 +43,7 @@
                 <p>جميع البيانات تستخدم فقط لتفعيل حسابك.</p>
             </div>
 
-            <form class="activation-form">
+            <form class="activation-form" action="{% url 'trial_success' %}">
                 <!-- School Info Section -->
                 <div class="form-section-title">معلومات المدرسة</div>
 
