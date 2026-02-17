@@ -66,72 +66,388 @@
     </div>
 </section>
 
-<section class="solution-section">
-    <div class="hero-container">
+<section class="roi-calculator-section">
+    <div class="hero-container roi-container">
+        <div class="section-header">
+            <h2>احسب الخسارة السنوية الناتجة عن الإدارة التقليدية</h2>
+            <p>أرقام تقديرية لمساعدتك على فهم حجم الخسائر بدون نظام إدارة ذكي</p>
+        </div>
 
-        <div class="hero-text solution-text">
-            <h2>الحل في منصة واحدة<br>تتحكم في كل شيء</h2>
-            <p>نظام ذكي يجمع الإدارة، التحصيل، المتابعة والتقارير في مكان واحد.</p>
+        <div class="calculator-card">
+            <!-- Inputs Column -->
+            <div class="calc-inputs-col">
+                <h3 class="calc-col-title">بيانات المدرسة</h3>
 
-            <div class="solution-features">
-                <div class="feature-item">
-                    <div class="icon"><i class="fa-solid fa-money-bill-wave"></i></div>
-                    <div class="text">
-                        <h3>تحصيل منظم بدون فوضى</h3>
-                        <p>متابعة الأقساط والمدفوعات بشكل واضح وتلقائي.</p>
+                <div class="calc-input-group">
+                    <label>
+                        <span><i class="fa-solid fa-user-group"></i> عدد الطلاب:</span> <span
+                            id="studentCountVal">320</span>
+                    </label>
+                    <input type="range" id="studentCount" min="50" max="1000" value="320"
+                        class="custom-range green-range">
+                </div>
+
+                <div class="calc-input-group">
+                    <label>
+                        <span><i class="fa-solid fa-money-bill-1-wave"></i> متوسط المصروفات الشهرية لكل طالب:</span>
+                    </label>
+                    <div class="input-with-unit">
+                        <input type="number" id="monthlyFee" value="800" class="form-input">
+                        <span>EGP</span>
                     </div>
                 </div>
-                <div class="feature-item">
-                    <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
-                    <div class="text">
-                        <h3>تقارير مالية لحظية</h3>
-                        <p>رؤية فورية للإيرادات والمصروفات والأرباح.</p>
-                    </div>
+
+                <div class="calc-input-group">
+                    <label>
+                        <span><i class="fa-solid fa-clock"></i> نسبة تأخير الدفعات:</span> <span
+                            id="delayPercentVal">15%</span>
+                    </label>
+                    <input type="range" id="delayPercent" min="0" max="50" value="15" class="custom-range green-range">
                 </div>
-                <div class="feature-item">
-                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
-                    <div class="text">
-                        <h3>تواصل مباشر مع أولياء الأمور</h3>
-                        <p>إشعارات وتحديثات مستمرة تقلل الشكاوى.</p>
-                    </div>
+
+                <div class="calc-input-group">
+                    <label>
+                        <span><i class="fa-solid fa-building"></i> عدد الموظفين الإداريين:</span>
+                    </label>
+                    <input type="number" id="adminCount" value="4" class="form-input">
                 </div>
-                <div class="feature-item">
-                    <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <div class="text">
-                        <h3>متابعة حضور دقيقة</h3>
-                        <p>تسجيل ومتابعة حضور الطلاب والموظفين بسهولة.</p>
-                    </div>
+
+                <div class="calc-total-preview">
+                    <span>- EGP <span id="totalLossPreview">168,000</span></span>
                 </div>
             </div>
 
-            <div class="hero-buttons">
-                <a href="{% url 'trial' %}" class="btn-gold">ابدأ تجربتك الآن</a>
-                <button onclick="openDemoModal()" class="btn-text">شاهد كيف يعمل النظام</button>
-            </div>
-            <div class="hero-trust">
-                <span><i class="fa-solid fa-shield-halved"></i> نظام آمن</span>
-                <span><i class="fa-solid fa-check-circle"></i> تقارير فورية</span>
-                <span><i class="fa-solid fa-headset"></i> دعم فني مستمر</span>
+            <!-- Results Column -->
+            <div class="calc-results-col">
+                <h3 class="calc-col-title">الخسائر السنوية التقديرية</h3>
+
+                <div class="result-item warning">
+                    <div class="res-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="res-text">
+                        <span>خسارة نتيجة تأخر التحصيل</span>
+                        <strong id="collectionLoss">96,000 جنيه</strong>
+                    </div>
+                </div>
+
+                <div class="result-item warning">
+                    <div class="res-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="res-text">
+                        <span>تكلفة وقت الإدارة الضائع</span>
+                        <strong id="adminLoss">72,000 جنيه</strong>
+                    </div>
+                </div>
+
+                <div class="total-loss-box">
+                    <span>إجمالي الخسارة: </span>
+                    <strong id="totalLossFinal">168,000 جنيه سنوياً</strong>
+                </div>
+
+                <div class="savings-box">
+                    <div class="sys-cost">
+                        تكلفة النظام السنوية: <span>13,000 جنيه</span>
+                    </div>
+                    <div class="potential-save">
+                        <i class="fa-solid fa-star"></i> التوفير المحتمل: <span id="potentialSavings">155,000
+                            جنيه</span>
+                    </div>
+                    <p class="small-hint">الفرق يعود إلى تحسين التحصيل وتقليل الهدر الإداري</p>
+                </div>
             </div>
         </div>
-        <div class="hero-image">
-            <!-- Solution section has image on the Right in LTR, so Left in RTL. The design Image 2 has text Right, Image Left. My grid helper does this. -->
-            <!-- Wait, Image 2 shows Text Right, Tablet Left. -->
-            <!-- My hero-container is flex row. In RTL, first child is Right? No. -->
-            <!-- HTML: Text first, Image second. CSS `direction: rtl`. First child is Right. -->
-            <!-- So I should put Image second in HTML to be on Left? Yes. -->
-            <!-- But I want Image Left? In RTL, `flex-direction: row`. Item 1 is Right, Item 2 is Left. -->
-            <!-- Text (Item 1) -> Right. Image (Item 2) -> Left. -->
-            <!-- So I put Text first in HTML. -->
-            <!-- Wait, the previous code had Text first, Image second. Result: Text Right, Image Left. Correct. -->
-            <!-- For Solution Section (Image 2), Text is Right, Image is Left. Same layout. -->
-            <img src="{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}" alt="المنصة على التابلت"
-                class="solution-img">
+
+        <div class="roi-cta">
+            <a href="{% url 'trial' %}" class="btn-gold-lg">ابدأ فترتك التجريبية المجانية الآن</a>
+            <p><i class="fa-solid fa-check"></i> لا حاجة لبطاقة ائتمان • تفعيل يدوي خلال 24 ساعة</p>
+        </div>
+    </div>
+</section>
+
+<section class="detailed-features-section">
+    <div class="hero-container features-container-col">
+        <div class="section-header">
+            <h2>ميزات مصممة لإدارة مدرستك بسهولة</h2>
+            <p>تم تصميم كل جزء من المنصة لتوفير وقتك، وتقليل الأخطاء، وزيادة أرباحك.</p>
+        </div>
+
+        <div class="features-grid-6">
+            <!-- Card 1: Students -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-users"></i></div> <!-- Use appropriate icon -->
+                <h3>إدارة الطلاب والفصول</h3>
+                <p>تسجيل وتتبع بيانات الطلاب وتنظيم الفصول بسهولة.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Card 2: Attendance -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <h3>تتبع الحضور والغياب</h3>
+                <p>تسجيل سريع للحضور وتنبيهات فورية بالغياب.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Card 3: Fees -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <h3>تحصيل رسوم ذكي</h3>
+                <p>إدارة الأقساط، تنبيهات الدفع المتأخر، وتقارير مالية واضحة.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Card 4: Parents -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-comments"></i></div>
+                <h3>التواصل المباشر مع أولياء الأمور</h3>
+                <p>رسائل فورية وتحديثات مستمرة تقلل من الشكاوى.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Card 5: Bus -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-bus"></i></div>
+                <h3>إدارة مسارات حافلات المدرسة</h3>
+                <p>تنظيم المسارات وتتبع الطلاب بسهولة وكفاءة.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Card 6: Reports -->
+            <div class="feature-card-lg">
+                <div class="fc-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>تقارير شاملة في لحظة</h3>
+                <p>رؤية واضحة للأداء المالي والإداري في مكان واحد.</p>
+                <a href="#" class="fc-link">تفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+        </div>
+
+        <div class="features-cta">
+            <button onclick="openDemoModal()" class="btn-dark-green">شاهد كيف يعمل النظام</button>
+            <p>استكشف لوحة تحكم المسؤول والمعلم وولي الأمر.</p>
+        </div>
+    </div>
+</section>
+
+<section class="competitive-advantage-section">
+    <div class="hero-container advantage-container-col">
+        <div class="section-header">
+            <h2>حوّل نظام إدارتك إلى ميزة تنافسية</h2>
+            <p>أكثر من مجرد تنظيم داخلي... تجربة احترافية تجعل الأولياء يختارون مدرستك بثقة.</p>
+        </div>
+
+        <div class="advantage-grid">
+            <!-- Card 1: Monitoring -->
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3>مراقبة في الوقت الفعلي</h3>
+                <p>الضور، الإشعارات، الرسوم... كل شيء واضح للأولياء في الوقت الفعلي.</p>
+                <ul class="adv-list">
+                    <li><i class="fa-regular fa-circle-check"></i> يقلل من الشكاوى</li>
+                    <li><i class="fa-regular fa-circle-check"></i> يعزز الثقة</li>
+                    <li><i class="fa-regular fa-circle-check"></i> يحسن تقييمات المدرسة</li>
+                </ul>
+                <a href="#" class="btn-outline-rounded">اكتشف كيف يعمل</a>
+            </div>
+
+            <!-- Card 2: Transport (Highlighted) -->
+            <div class="advantage-card highlight-card">
+                <div class="adv-icon"><i class="fa-solid fa-bus-simple"></i></div>
+                <h3>نظام نقل مدرسي ذكي</h3>
+                <p>تتبع مباشر للحافلات مع إشعارات فورية بالوصول للأولياء.</p>
+                <ul class="adv-list">
+                    <li><i class="fa-regular fa-circle-check"></i> يزيد من الأمان</li>
+                    <li><i class="fa-regular fa-circle-check"></i> يقلل من قلق الأولياء</li>
+                    <li><i class="fa-regular fa-circle-check"></i> ميزة تسويقية واضحة</li>
+                </ul>
+                <a href="#" class="btn-green-rounded">اكتشف كيف يعمل</a>
+            </div>
+
+            <!-- Card 3: Medical -->
+            <div class="advantage-card">
+                <div class="adv-icon"><i class="fa-solid fa-file-medical"></i></div>
+                <h3>ملف طبي منظم لكل طالب</h3>
+                <p>بيانات صحية جاهزة في أي وقت، مما يساعدك على التصرف بسرعة في حالات الطوارئ.</p>
+                <ul class="adv-list">
+                    <li><i class="fa-regular fa-circle-check"></i> استجابة أسرع</li>
+                    <li><i class="fa-regular fa-circle-check"></i> صورة احترافية</li>
+                    <li><i class="fa-regular fa-circle-check"></i> ثقة أكبر من الأولياء</li>
+                </ul>
+                <a href="#" class="btn-outline-rounded">اكتشف كيف يعمل</a>
+            </div>
         </div>
     </div>
 </section>
 
 
+
+<section class="testimonials-stats-section">
+    <div class="hero-container testimonials-container-col">
+        <div class="section-header">
+            <h2>مدارس استخدمت النظام... وتفوّقت على غيرها</h2>
+            <p>أرقام حقيقية وتجارب قصيرة المدى من مؤسسات تعليمية قررت تطوير إدارتها.</p>
+        </div>
+
+        <!-- Logos Strip (Placeholder Icons) -->
+        <div class="logos-strip">
+            <i class="fa-solid fa-school"></i>
+            <i class="fa-solid fa-graduation-cap"></i>
+            <i class="fa-solid fa-book-open"></i>
+            <i class="fa-solid fa-building-columns"></i>
+            <i class="fa-solid fa-chalkboard"></i>
+            <i class="fa-solid fa-shapes"></i>
+            <i class="fa-solid fa-award"></i>
+            <p class="logos-caption">أكثر من 500 مؤسسة تعليمية تعتمد على النظام</p>
+        </div>
+
+        <div class="testimonials-slider">
+            <button class="slider-btn prev"><i class="fa-solid fa-chevron-right"></i></button>
+
+            <div class="testimonial-cards-wrapper">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="badge-client">عميل منذ 2023</div>
+                    <h3>اسم المدرسة - المدينة</h3>
+                    <p>"زيادة ملحوظة في كفاءة الإدارة وتقليل الجهد بنسبة 40%، تجربة استثنائية لفريقنا."</p>
+                    <div class="card-stats-grid">
+                        <div class="stat-item">
+                            <strong>1200</strong>
+                            <span>عدد الطلاب</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>عدد الفروع</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>ساعة الاستخدام</span>
+                        </div>
+                    </div>
+                    <a href="#" class="details-link">عرض التفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+
+                <!-- Card 2 (Highlight/Center) -->
+                <div class="testimonial-card highlight">
+                    <div class="badge-client">عميل منذ 2023</div>
+                    <h3>اسم المدرسة - المدينة</h3>
+                    <p>"زيادة ملحوظة في كفاءة الإدارة وتقليل الجهد بنسبة 40%، تجربة استثنائية لفريقنا."</p>
+                    <div class="card-stats-grid">
+                        <div class="stat-item">
+                            <strong>1200</strong>
+                            <span>عدد الطلاب</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>عدد الفروع</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>ساعة الاستخدام</span>
+                        </div>
+                    </div>
+                    <a href="#" class="details-link">عرض التفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="badge-client">عميل منذ 2023</div>
+                    <h3>اسم المدرسة - المدينة</h3>
+                    <p>"زيادة ملحوظة في كفاءة الإدارة وتقليل الجهد بنسبة 40%، تجربة استثنائية لفريقنا."</p>
+                    <div class="card-stats-grid">
+                        <div class="stat-item">
+                            <strong>1200</strong>
+                            <span>عدد الطلاب</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>عدد الفروع</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4</strong>
+                            <span>ساعة الاستخدام</span>
+                        </div>
+                    </div>
+                    <a href="#" class="details-link">عرض التفاصيل <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+            <button class="slider-btn next"><i class="fa-solid fa-chevron-left"></i></button>
+        </div>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <!-- Global Stats Bar -->
+        <div class="global-stats-bar">
+            <div class="g-stat">
+                <strong>4 سنوات</strong>
+                <span>من التشغيل الفعلي<br>في المدارس الحقيقية</span>
+            </div>
+            <div class="separator-line"></div>
+            <div class="g-stat">
+                <strong>120,000+</strong>
+                <span>طالب</span>
+            </div>
+            <div class="separator-line"></div>
+            <div class="g-stat">
+                <strong>500+</strong>
+                <span>مؤسسة تعليمية</span>
+            </div>
+        </div>
+
+        <div class="section-actions">
+            <a href="{% url 'trial' %}" class="btn-dark-green-lg">ابدأ تجربتك المجانية</a>
+            <a href="#" class="btn-outline-lg">شاهد جميع قصص النجاح</a>
+        </div>
+        <p class="section-note">تفعيل يدوي خلال 24 ساعة • لا يلزم وجود بطاقة ائتمان</p>
+
+    </div>
+</section>
+
+<section class="affiliate-section">
+    <div class="hero-container affiliate-container">
+        <div class="affiliate-box">
+            <div class="section-header white-header">
+                <h2>تحويل علاقاتك التعليمية إلى دخل ثابت.</h2>
+                <p>برنامج شراكة يتيح لك كسب عمولة متكررة مقابل إحالة المدارس للمنصة.</p>
+            </div>
+
+            <div class="affiliate-grid">
+                <!-- Card 1 -->
+                <div class="affiliate-card">
+                    <div class="aff-icon"><i class="fa-solid fa-toolbox"></i></div>
+                    <h3>أدوات جاهزة</h3>
+                    <p>مواد تسويقية، عروض، ودعم لمساعدتك في إبرام الصفقات. سارع.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="affiliate-card">
+                    <div class="aff-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                    <h3>تتبع كامل</h3>
+                    <p>لوحة تحكم لتتبع عملائك وعمولاتك في الوقت الفعلي.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="affiliate-card">
+                    <div class="aff-icon"><i class="fa-solid fa-coins"></i></div>
+                    <h3>عمولة متكررة</h3>
+                    <p>اكسب مع كل اشتراك وتجديد دون بذل جهد إضافي.</p>
+                </div>
+            </div>
+
+            <div class="affiliate-cta">
+                <a href="#" class="btn-dark-teal">تسجيل كموزع</a>
+                <p>التسجيل مجاني - لا يوجد التزامات</p>
+            </div>
+
+            <!-- Decor Orbs -->
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+    </div>
+</section>
 
 <section class="roles-section">
     <div class="hero-container role-container-col">
@@ -295,28 +611,82 @@
         document.querySelectorAll('.demo-tab').forEach(btn => btn.classList.remove('active'));
         tabBtn.classList.add('active');
 
-        // Update Screen Image (Logic to swap images based on role)
+        // Update Screen Image and Cards
         const screenImg = document.getElementById('demo-screen-img');
-        const cardManager = document.getElementById('demo-card-manager');
-        const cardTeacher = document.getElementById('demo-card-teacher');
-        const cardParent = document.getElementById('demo-card-parent');
 
         // Reset Cards
         document.querySelectorAll('.feature-card').forEach(card => card.classList.remove('active'));
+        const activeCard = document.getElementById('demo-card-' + role);
+        if (activeCard) activeCard.classList.add('active');
 
+        // Update Image
         if (role === 'manager') {
             screenImg.src = "{% static 'images/admin-dashboard.png' %}";
-            cardManager.classList.add('active');
         } else if (role === 'teacher') {
-            // Placeholder or teacher specific image
             screenImg.src = "{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}";
-            cardTeacher.classList.add('active');
         } else if (role === 'parent') {
-            // Placeholder or parent specific image
-            screenImg.src = "{% static 'images/dashboard-mockup.png' %}";
-            cardParent.classList.add('active');
+            screenImg.src = "{% static 'images/Gemini_Generated_Image_l4tm72l4tm72l4tm.png' %}"; // Use appropriate image
         }
     }
+
+    /* ROI Calculator Logic */
+    document.addEventListener('DOMContentLoaded', function () {
+        const studentCountInput = document.getElementById('studentCount');
+        const studentCountVal = document.getElementById('studentCountVal');
+        const monthlyFeeInput = document.getElementById('monthlyFee');
+        const delayPercentInput = document.getElementById('delayPercent');
+        const delayPercentVal = document.getElementById('delayPercentVal');
+        const adminCountInput = document.getElementById('adminCount');
+
+        const totalLossPreview = document.getElementById('totalLossPreview');
+        const collectionLossDisplay = document.getElementById('collectionLoss');
+        const adminLossDisplay = document.getElementById('adminLoss');
+        const totalLossFinal = document.getElementById('totalLossFinal');
+        const potentialSavingsDisplay = document.getElementById('potentialSavings');
+
+        const SYSTEM_COST = 13000;
+        const ADMIN_WASTE_PER_HEAD = 18000; // Derived constant
+        const COLLECTION_LOSS_FACTOR = 2.5; // Derived constant
+
+        function formatCurrency(num) {
+            return num.toLocaleString('en-US');
+        }
+
+        function calculateROI() {
+            // Get Values
+            const students = parseInt(studentCountInput.value) || 0;
+            const fee = parseInt(monthlyFeeInput.value) || 0;
+            const delay = parseInt(delayPercentInput.value) || 0;
+            const admins = parseInt(adminCountInput.value) || 0;
+
+            // Update UI Labels
+            studentCountVal.textContent = students;
+            delayPercentVal.textContent = delay + '%';
+
+            // Calculate
+            const monthlyRevenue = students * fee;
+            const collectionLoss = monthlyRevenue * (delay / 100) * COLLECTION_LOSS_FACTOR;
+            const adminLoss = admins * ADMIN_WASTE_PER_HEAD;
+            const totalLoss = collectionLoss + adminLoss;
+            const savings = totalLoss - SYSTEM_COST;
+
+            // Update Display
+            totalLossPreview.textContent = formatCurrency(Math.round(totalLoss));
+            collectionLossDisplay.textContent = formatCurrency(Math.round(collectionLoss)) + ' جنيه';
+            adminLossDisplay.textContent = formatCurrency(Math.round(adminLoss)) + ' جنيه';
+            totalLossFinal.textContent = formatCurrency(Math.round(totalLoss)) + ' جنيه سنوياً';
+            potentialSavingsDisplay.textContent = formatCurrency(Math.round(savings)) + ' جنيه';
+        }
+
+        // Listeners
+        studentCountInput.addEventListener('input', calculateROI);
+        monthlyFeeInput.addEventListener('input', calculateROI);
+        delayPercentInput.addEventListener('input', calculateROI);
+        adminCountInput.addEventListener('input', calculateROI);
+
+        // Init
+        calculateROI();
+    });
 </script>
 
 <!-- Watch Demo Modal -->
@@ -375,4 +745,19 @@
         videoContainer.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
 </script>
+
+<section class="final-cta-section">
+    <div class="hero-container final-cta-container">
+        <h2>جاهز لبدء تنظيم مدرستك؟</h2>
+        <p>ابدأ تجربة حقيقية وشاهد الفرق بنفسك في غضون أيام قليلة.</p>
+
+        <div class="final-cta-buttons">
+            <a href="{% url 'trial' %}" class="btn-green-xl">ابدأ الآن</a>
+            <a href="#" class="btn-outline-xl">اتصل بنا</a>
+        </div>
+
+        <p class="trust-note">بدون التزام • تفعيل يدوي خلال 24 ساعة • دعم كامل</p>
+    </div>
+</section>
+
 {% endblock %}
