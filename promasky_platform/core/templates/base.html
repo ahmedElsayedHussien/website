@@ -30,15 +30,16 @@
                     <li><a href="{% url 'home' %}" class="nav-item active">الرئيسية</a></li>
 
                     <li class="nav-item-dropdown">
-                        <a href="#" class="nav-item">الميزات</a>
+                        <a href="{% url 'features' %}" class="nav-item">الميزات</a>
                         <div class="mega-menu">
                             <div class="mega-menu-content">
                                 <ul class="mega-links">
-                                    <li><a href="#">إدارة الطلاب</a></li>
-                                    <li><a href="#">الحضور والغياب</a></li>
-                                    <li><a href="#">الإدارة المالية</a></li>
-                                    <li><a href="#">التقارير</a></li>
+                                    <li><a href="#">الشئون المالية</a></li>
+                                    <li><a href="#"> اداره الطلاب</a></li>
+                                    <li><a href="#">الحضور </a></li>
+                                    <li><a href="#">النقل المدرسي</a></li>
                                     <li><a href="#">أولياء الأمور</a></li>
+                                    <li><a href="#"> الموظفين</a></li>
                                 </ul>
                                 <div class="mega-highlight">
                                     <img src="{% static 'images/admin-dashboard.png' %}" alt="Preview">
@@ -170,7 +171,7 @@
                         <h3>روابط سريعة</h3>
                         <ul class="footer-links">
                             <li><a href="{% url 'home' %}" class="active">الرئيسية</a></li>
-                            <li><a href="#">الميزات</a></li>
+                            <li><a href="{% url 'features' %}">الميزات</a></li>
                             <li><a href="{% url 'pricing' %}">الأسعار</a></li>
                             <li><a href="#">قصص نجاح</a></li>
                             <li><a href="#" onclick="openDemoModal()">جولة تفاعلية</a></li>

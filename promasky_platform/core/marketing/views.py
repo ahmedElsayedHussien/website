@@ -12,3 +12,9 @@ def trial(request):
 
 def trial_success(request):
     return render(request, 'marketing/trial_success.html')
+
+def features(request):
+    return render(request, 'marketing/features.html')
+
+def feature_finance(request):
+    return render(request, 'marketing/feature_finance.html')

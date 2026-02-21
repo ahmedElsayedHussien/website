@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Make the transparent base header visible on this page by giving it a background */
+    .site-header {
+        background-color: var(--primary-emerald);
+        position: relative;
+        top: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .features-page-section {
+        padding-top: 60px;
+    }
+</style>
+
+<section class="features-page-section">
+    <div class="hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <h1 class="features-title">اختر القسم الذي تريد استكشافه</h1>
+        <p class="features-subtitle">اضغط على أي بطاقة للانتقال إلى تفاصيل الميزة</p>
+
+        <div class="features-cards-grid">
+            <!-- Card 1 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <h3>الحضور</h3>
+                <p>تسجيل حضور يومي وتقارير غياب دقيقة.</p>
+                <a href="#" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <h3>إدارة الطلاب</h3>
+                <p>ملفات طلاب منظمة، تقسيم فصول، وتتبع شامل.</p>
+                <a href="#" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h3>الشؤون المالية والتقارير</h3>
+                <p>تحصيل ومصاريف واضحة وتقارير مالية في أي وقت.</p>
+                <a href="{% url 'feature_finance' %}" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-users-cog"></i>
+                </div>
+                <h3>الموظفين</h3>
+                <p>أدوار وصلاحيات واضحة لكل مستخدم.</p>
+                <a href="#" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+                <h3>النقل المدرسي</h3>
+                <p>إدارة خطوط سير الحافلات وتتبعها.</p>
+                <a href="#" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="feature-page-card">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h3>أولياء الأمور</h3>
+                <p>تواصل مباشر، إشعارات فورية، وتقليل الشكاوى.</p>
+                <a href="#" class="btn-view-details">عرض التفاصيل &larr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
