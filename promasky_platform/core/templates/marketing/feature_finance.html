@@ -12,9 +12,17 @@
         padding-bottom: 20px;
     }
 
+    /* Prevent horizontal scroll from absolutely positioned elements */
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
     .finance-feature-hero {
         padding-top: 80px;
         /* Reduced from 160px because the header is now relative */
+        overflow-x: hidden;
+        position: relative;
     }
 </style>
 
