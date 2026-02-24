@@ -1,0 +1,2304 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Ensure the header is visible over the light right-side background */
+    .site-header {
+        background-color: var(--primary-emerald, #0F4F46);
+        position: relative;
+        top: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .students-feature-hero {
+        padding-top: 80px;
+        padding-bottom: 80px;
+        position: relative;
+        background-color: #F8FBFB;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Decorative background blur shapes */
+    .bg-shape-green {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: rgba(15, 79, 70, 0.15);
+        filter: blur(80px);
+        border-radius: 50%;
+        top: 10%;
+        left: 30%;
+        z-index: 0;
+    }
+
+    .bg-shape-yellow {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(249, 204, 41, 0.2);
+        filter: blur(80px);
+        border-radius: 50%;
+        bottom: 10%;
+        left: -5%;
+        z-index: 0;
+    }
+
+    .students-hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .students-text-area {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    .students-badge {
+        background: #E6EFED;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 20px;
+        border: 1px solid #B2DFDB;
+    }
+
+    .students-text-area h1 {
+        font-size: 3rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .students-text-area p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .students-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+    .students-list li {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-weight: 600;
+    }
+
+    .students-list li i {
+        color: var(--primary-emerald, #0F4F46);
+        background: #E6EFED;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .btn-gold-students {
+        background-color: var(--accent-gold, #F9CC29);
+        color: var(--dark-text, #333);
+        padding: 15px 35px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(249, 204, 41, 0.3);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-gold-students:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(249, 204, 41, 0.4);
+    }
+
+    .btn-gold-students i {
+        font-size: 0.9em;
+    }
+
+    .small-text-students {
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 15px;
+        display: block;
+    }
+
+    /* Visual Area */
+    .students-visual-area {
+        flex: 1.2;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .tablet-mockup {
+        background: #fff;
+        border: 10px solid #e0e0e0;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 650px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tablet-mockup img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .floating-stats-card {
+        position: absolute;
+        bottom: -20px;
+        right: -30px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid #f0f0f0;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .stats-card-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-label {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .stats-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary-emerald, #0F4F46);
+        line-height: 1;
+    }
+
+    .stats-icon {
+        background: #E6EFED;
+        color: var(--primary-emerald, #0F4F46);
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+    }
+
+    @media (max-width: 991px) {
+        .students-hero-container {
+            flex-direction: column;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .students-text-area {
+            max-width: 100%;
+        }
+
+        .students-list li {
+            justify-content: center;
+        }
+
+        .floating-stats-card {
+            right: 10%;
+            bottom: -15px;
+        }
+    }
+
+    /* Workflow Section */
+    .students-workflow-section {
+        padding: 80px 0;
+        background: linear-gradient(to bottom, #F8FBFB, #EAF4F2);
+        position: relative;
+    }
+
+    .workflow-header {
+        margin-bottom: 50px;
+    }
+
+    .workflow-badge {
+        background: #DCEBE7;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .workflow-header h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .workflow-header p {
+        font-size: 1.1rem;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .workflow-steps-container {
+        position: relative;
+        width: 100%;
+        margin-bottom: 40px;
+        padding: 20px 0;
+    }
+
+    .workflow-line {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        height: 6px;
+        background: #DCEBE7;
+        z-index: 1;
+        border-radius: 3px;
+    }
+
+    .workflow-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .workflow-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid #EAF4F2;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .workflow-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .workflow-card.active {
+        background: rgba(220, 235, 231, 0.3);
+        /* very light green tint */
+        box-shadow: 0 10px 30px rgba(15, 79, 70, 0.1), 0 0 0 3px #DCEBE7;
+    }
+
+    .workflow-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin: 0 auto 20px;
+        background: #EAF4F2;
+        color: var(--primary-emerald, #0F4F46);
+    }
+
+    .workflow-card.active .workflow-icon {
+        background: var(--primary-emerald, #0F4F46);
+        color: #fff;
+    }
+
+    .workflow-card h3 {
+        font-size: 1.1rem;
+        color: var(--dark-text, #333);
+        margin-bottom: 20px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    .workflow-card ul {
+        list-style: none;
+        padding: 0;
+        text-align: right;
+    }
+
+    .workflow-card ul li {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 10px;
+        position: relative;
+        padding-right: 15px;
+    }
+
+    .workflow-card ul li::before {
+        content: "•";
+        position: absolute;
+        right: 0;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: bold;
+    }
+
+    .workflow-note {
+        background: #DCEBE7;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .btn-outline-dark-students {
+        border: 2px solid var(--primary-emerald, #0F4F46);
+        color: var(--primary-emerald, #0F4F46);
+        background: transparent;
+        padding: 12px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-dark-students:hover {
+        background: var(--primary-emerald, #0F4F46);
+        color: #fff;
+    }
+
+    @media (max-width: 991px) {
+        .workflow-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .workflow-line {
+            display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .workflow-cards {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Dashboard Section */
+    .students-dashboard-section {
+        padding: 80px 0;
+        background-color: var(--white, #fff);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .students-dashboard-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .dashboard-text-area {
+        flex: 1;
+        max-width: 550px;
+    }
+
+    .dashboard-badge {
+        background: #E6EFED;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 20px;
+        border: 1px solid #B2DFDB;
+    }
+
+    .dashboard-text-area h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .dashboard-text-area p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .dashboard-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+    .dashboard-list li {
+        font-size: 1.05rem;
+        color: #333;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+    }
+
+    .dashboard-list li i {
+        color: #fff;
+        background: var(--primary-emerald, #0F4F46);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .dashboard-tags {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .d-tag {
+        background: #F0F4F8;
+        color: #555;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .dashboard-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-actions .btn-gold-students {
+        margin-bottom: 0;
+    }
+
+    .small-text-dark {
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 10px;
+        display: block;
+    }
+
+    .dashboard-image-area {
+        flex: 1.2;
+        position: relative;
+    }
+
+    .dashboard-mockup-wrapper {
+        background: #fff;
+        border: 10px solid #f8f8f8;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+    }
+
+    .dashboard-main-img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Decorative blobs for dashboard section */
+    .blob-shape-1 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(249, 204, 41, 0.15);
+        border-radius: 50%;
+        filter: blur(60px);
+        top: -50px;
+        right: -100px;
+        z-index: 1;
+    }
+
+    .blob-shape-2 {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: rgba(15, 79, 70, 0.1);
+        border-radius: 50%;
+        filter: blur(60px);
+        bottom: -50px;
+        left: -50px;
+        z-index: 1;
+    }
+
+    @media (max-width: 991px) {
+        .students-dashboard-container {
+            flex-direction: column;
+        }
+
+        .dashboard-text-area {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .dashboard-list li {
+            justify-content: center;
+        }
+
+        .dashboard-tags {
+            justify-content: center;
+        }
+
+        .dashboard-actions {
+            justify-content: center;
+        }
+    }
+
+    /* Scenario Section */
+    .students-scenario-section {
+        padding: 80px 0;
+        background-color: #F8FBFB;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scenario-container-students {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+        flex-direction: row-reverse;
+        /* Flip the layout: image left, text right */
+    }
+
+    .scenario-text-area-students {
+        flex: 1;
+        max-width: 550px;
+    }
+
+    .scenario-badge-students {
+        background: #0F4F46;
+        color: #fff;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-block;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(15, 79, 70, 0.2);
+    }
+
+    .scenario-text-area-students h2 {
+        font-size: 2.6rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .scenario-text-area-students p.scenario-desc-students {
+        font-size: 1.15rem;
+        color: #444;
+        margin-bottom: 35px;
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
+    .scenario-steps-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+    .scenario-steps-list li {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-weight: 600;
+    }
+
+    .scenario-steps-list li .step-num {
+        background: #B2DFDB;
+        color: var(--primary-emerald, #0F4F46);
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .scenario-tags-students {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 35px;
+        flex-wrap: wrap;
+    }
+
+    .s-tag-students {
+        background: #E6EFED;
+        color: #555;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .s-tag-students i {
+        color: var(--primary-emerald, #0F4F46);
+    }
+
+    .scenario-actions-students {
+        margin-bottom: 15px;
+    }
+
+    .scenario-image-area-students {
+        flex: 1.3;
+        position: relative;
+    }
+
+    .laptop-mockup {
+        background: #fff;
+        border: 15px solid #f0f0f0;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        border-bottom: 0;
+    }
+
+    .laptop-base-student {
+        height: 25px;
+        background: #e0e0e0;
+        border-radius: 0 0 20px 20px;
+        width: 110%;
+        margin-left: -5%;
+        /* extend beyond the screen to look like a base */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 3;
+    }
+
+    .laptop-base-student::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 45%;
+        width: 10%;
+        height: 6px;
+        background: #ccc;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .scenario-main-img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Decorative wires/circles */
+    .scenario-bg-line {
+        position: absolute;
+        top: 10%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        border: 1px solid rgba(15, 79, 70, 0.2);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    @media (max-width: 991px) {
+        .scenario-container-students {
+            flex-direction: column;
+        }
+
+        .scenario-text-area-students {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .scenario-steps-list li {
+            justify-content: center;
+        }
+
+        .scenario-tags-students {
+            justify-content: center;
+        }
+
+        .laptop-base-student {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+
+    /* Why Different Section */
+    .students-why-different-section {
+        padding: 80px 0;
+        background-color: #EAF4F2;
+        position: relative;
+        text-align: center;
+    }
+
+    .why-header-students {
+        margin-bottom: 50px;
+    }
+
+    .why-badge-students {
+        background: #DCEBE7;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .why-header-students h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .why-header-students p {
+        font-size: 1.15rem;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 500;
+    }
+
+    .why-grid-students {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+        padding: 0 20px;
+    }
+
+    .why-card-students {
+        background: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        border: 1px solid #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: right;
+    }
+
+    .why-card-students:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        border-color: #DCEBE7;
+    }
+
+    .why-card-icon-students {
+        width: 80px;
+        height: 80px;
+        background: #DCEBE7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--primary-emerald, #0F4F46);
+        flex-shrink: 0;
+    }
+
+    .why-card-content-students h3 {
+        font-size: 1.2rem;
+        color: var(--primary-emerald, #0F4F46);
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .why-card-content-students ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .why-card-content-students ul li {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 8px;
+        position: relative;
+        padding-right: 15px;
+    }
+
+    .why-card-content-students ul li::before {
+        content: "•";
+        position: absolute;
+        right: 0;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: bold;
+    }
+
+    .why-note-students {
+        background: #DCEBE7;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .why-note-students i {
+        background: var(--primary-emerald, #0F4F46);
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+    }
+
+    .why-footer-actions-students {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 767px) {
+        .why-grid-students {
+            grid-template-columns: 1fr;
+        }
+
+        .why-card-students {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .why-card-content-students ul li {
+            padding-right: 0;
+        }
+
+        .why-card-content-students ul li::before {
+            display: none;
+        }
+    }
+
+    /* Administrative Value Section */
+    .students-admin-value-section {
+        padding: 80px 0;
+        background: linear-gradient(180deg, #EAF4F2 0%, #FFFFFF 100%);
+        position: relative;
+        text-align: center;
+    }
+
+    .admin-value-header {
+        margin-bottom: 50px;
+    }
+
+    .admin-value-badge {
+        background: #0F4F46;
+        color: #fff;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .admin-value-header h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .admin-value-header p {
+        font-size: 1.15rem;
+        color: #444;
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 600;
+    }
+
+    .admin-value-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .admin-value-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+        border: 1px solid #f0f0f0;
+        transition: transform 0.3s ease;
+        text-align: right;
+    }
+
+    .admin-value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .admin-value-icon {
+        width: 70px;
+        height: 70px;
+        background: #EAF4F2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--primary-emerald, #0F4F46);
+        flex-shrink: 0;
+        border: 2px solid var(--primary-emerald, #0F4F46);
+    }
+
+    .admin-value-content {
+        flex: 1;
+    }
+
+    .admin-value-content h3 {
+        font-size: 1.3rem;
+        color: var(--primary-emerald, #0F4F46);
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .admin-value-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .admin-value-content ul li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 8px;
+        position: relative;
+        padding-right: 15px;
+    }
+
+    .admin-value-content ul li::before {
+        content: "•";
+        position: absolute;
+        right: 0;
+        color: #333;
+        font-weight: bold;
+    }
+
+    @media (max-width: 767px) {
+        .admin-value-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .admin-value-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .admin-value-content ul li {
+            padding-right: 0;
+        }
+
+        .admin-value-content ul li::before {
+            display: none;
+        }
+    }
+
+    /* Final CTA Section */
+    .students-final-cta-section {
+        padding: 70px 20px;
+        background: linear-gradient(135deg, #f0f9f6 0%, #fffdf0 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .final-cta-blob-1 {
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        background: rgba(249, 204, 41, 0.25);
+        border-radius: 50%;
+        filter: blur(80px);
+        bottom: -80px;
+        left: -80px;
+        z-index: 0;
+    }
+
+    .final-cta-blob-2 {
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        background: rgba(15, 79, 70, 0.1);
+        border-radius: 50%;
+        filter: blur(80px);
+        top: -60px;
+        right: -60px;
+        z-index: 0;
+    }
+
+    .final-cta-card {
+        position: relative;
+        z-index: 2;
+        background: #fff;
+        border-radius: 24px;
+        padding: 60px 50px;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    }
+
+    .final-cta-badge {
+        background: #EAF4F2;
+        color: var(--primary-emerald, #0F4F46);
+        border: 1px solid #B2DFDB;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-title {
+        font-size: 3rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 900;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .final-cta-desc {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 35px;
+        line-height: 1.7;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .final-cta-tags {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+
+    .final-cta-tag {
+        background: #F0F4F8;
+        color: #555;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .final-cta-tag i {
+        color: var(--primary-emerald, #0F4F46);
+    }
+
+    .btn-final-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #F9CC29;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 18px 50px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 25px rgba(249, 204, 41, 0.4);
+    }
+
+    .btn-final-cta:hover {
+        background: #e6b800;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(249, 204, 41, 0.5);
+    }
+
+    .final-cta-sub-note {
+        color: #888;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .final-cta-sub-note-2 {
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 767px) {
+        .final-cta-card {
+            padding: 40px 25px;
+        }
+
+        .final-cta-title {
+            font-size: 2.2rem;
+        }
+    }
+
+    /* FAQ Section */
+    .students-faq-section {
+        padding: 90px 0;
+        background: #f8fbfb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .faq-blob-1 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(249, 204, 41, 0.15);
+        border-radius: 50%;
+        filter: blur(70px);
+        bottom: -80px;
+        left: -80px;
+        z-index: 1;
+    }
+
+    .faq-blob-2 {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: rgba(15, 79, 70, 0.08);
+        border-radius: 50%;
+        filter: blur(70px);
+        top: -60px;
+        right: -60px;
+        z-index: 1;
+    }
+
+    .faq-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .faq-badge {
+        background: #fff;
+        color: var(--primary-emerald, #0F4F46);
+        border: 1px solid #B2DFDB;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .faq-header h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .faq-header p {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    .faq-list {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .faq-item:last-child {
+        border-bottom: none;
+    }
+
+    .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 22px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        color: #333;
+        font-size: 1.05rem;
+        font-weight: 600;
+        text-align: right;
+        gap: 15px;
+        font-family: inherit;
+        transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+        background: #f8fffe;
+    }
+
+    .faq-item.active .faq-question {
+        color: var(--primary-emerald, #0F4F46);
+        background: #EAF4F2;
+    }
+
+    .faq-icon {
+        width: 28px;
+        height: 28px;
+        background: #EAF4F2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        color: var(--primary-emerald, #0F4F46);
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+
+    .faq-item.active .faq-icon {
+        background: var(--primary-emerald, #0F4F46);
+        color: #fff;
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-answer-inner {
+        padding: 0 30px 22px;
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 300px;
+    }
+
+    /* No answer box */
+    .faq-support-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 25px 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        border: 1px solid #e8f5e9;
+    }
+
+    .faq-support-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .faq-support-icon {
+        width: 55px;
+        height: 55px;
+        background: #EAF4F2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        flex-shrink: 0;
+    }
+
+    .faq-support-text h3 {
+        font-size: 1.1rem;
+        color: #333;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .faq-support-text p {
+        font-size: 0.95rem;
+        color: #777;
+    }
+
+    .btn-outline-contact {
+        border: 2px solid var(--primary-emerald, #0F4F46);
+        color: var(--primary-emerald, #0F4F46);
+        background: transparent;
+        padding: 10px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        white-space: nowrap;
+    }
+
+    .btn-outline-contact:hover {
+        background: var(--primary-emerald, #0F4F46);
+        color: #fff;
+    }
+
+    @media (max-width: 767px) {
+        .faq-support-box {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .faq-support-info {
+            flex-direction: column;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 20px 18px;
+        }
+    }
+
+    /* Before/After Comparison Section */
+    .students-comparison-section {
+        padding: 90px 0;
+        background: linear-gradient(135deg, #f0f9f6 0%, #e8f5e9 50%, #f0f9f6 100%);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .comparison-blob-1 {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(249, 204, 41, 0.2);
+        border-radius: 50%;
+        filter: blur(80px);
+        top: -100px;
+        left: -100px;
+        z-index: 1;
+    }
+
+    .comparison-blob-2 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(15, 79, 70, 0.12);
+        border-radius: 50%;
+        filter: blur(80px);
+        bottom: -80px;
+        right: -80px;
+        z-index: 1;
+    }
+
+    .comparison-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .comparison-header {
+        margin-bottom: 50px;
+    }
+
+    .comparison-badge {
+        background: #fff;
+        color: var(--primary-emerald, #0F4F46);
+        border: 1px solid #B2DFDB;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .comparison-header h2 {
+        font-size: 2.5rem;
+        color: var(--primary-emerald, #0F4F46);
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .comparison-header p {
+        font-size: 1.1rem;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    /* Before Column */
+    .comparison-col-before {
+        background: #fff;
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        border: 1px solid #e0e0e0;
+        text-align: right;
+    }
+
+    .comparison-col-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .label-before {
+        background: #f5f5f5;
+        color: #999;
+        border: 1px solid #e0e0e0;
+    }
+
+    .label-before i {
+        color: #f0a500;
+    }
+
+    .comparison-col-before ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .comparison-col-before ul li {
+        font-size: 1.05rem;
+        color: #666;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .comparison-col-before ul li::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #ccc;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* After Column */
+    .comparison-col-after {
+        background: var(--primary-emerald, #0F4F46);
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(15, 79, 70, 0.2);
+        text-align: right;
+    }
+
+    .label-after {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .label-after i {
+        color: #F9CC29;
+    }
+
+    .comparison-col-after ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .comparison-col-after ul li {
+        font-size: 1.05rem;
+        color: #fff;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .comparison-col-after ul li i {
+        color: #F9CC29;
+        flex-shrink: 0;
+    }
+
+    /* Bottom tags */
+    .comparison-tags {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 35px;
+    }
+
+    .comp-tag {
+        background: #fff;
+        color: #555;
+        padding: 9px 20px;
+        border-radius: 25px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .comp-tag i {
+        color: var(--primary-emerald, #0F4F46);
+    }
+
+    .btn-gold-big {
+        background: #F9CC29;
+        color: var(--primary-emerald, #0F4F46);
+        padding: 16px 40px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.15rem;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 20px rgba(249, 204, 41, 0.4);
+    }
+
+    .btn-gold-big:hover {
+        background: #e6b800;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(249, 204, 41, 0.5);
+    }
+
+    @media (max-width: 767px) {
+        .comparison-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-col-before ul li,
+        .comparison-col-after ul li {
+            justify-content: flex-start;
+        }
+    }
+</style>
+
+<section class="students-feature-hero">
+    <div class="bg-shape-green"></div>
+    <div class="bg-shape-yellow"></div>
+
+    <div class="students-hero-container">
+
+        <!-- Text Area (Right in RTL) -->
+        <div class="students-text-area">
+            <div class="students-badge">إدارة الطلاب</div>
+            <h1>إدارة كاملة لبيانات الطلاب في مكان واحد</h1>
+            <p>سجل بيانات كل طالب، تابع حالته الدراسية، ونظم المستندات والفصول بسهولة... بدون تكرار أو أخطاء.</p>
+
+            <ul class="students-list">
+                <li><i class="fa-solid fa-check"></i> تنظيم شامل لكل طالب</li>
+                <li><i class="fa-solid fa-check"></i> متابعة دقيقة بدون ملفات ورقية</li>
+                <li><i class="fa-solid fa-check"></i> وصول سريع لأي معلومة</li>
+            </ul>
+
+            <a href="{% url 'trial' %}" class="btn-gold-students">
+                اطلب تجربة لإدارة الطلاب <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <span class="small-text-students">تفعيل خلال 24 ساعة - بدون التزام</span>
+        </div>
+
+        <!-- Visual Area (Left in RTL) -->
+        <div class="students-visual-area">
+            <div class="tablet-mockup">
+                <!-- Using an existing image since we don't have the specific student one uploaded -->
+                <img src="{% static 'images/admin-dashboard.png' %}" alt="واجهة إدارة الطلاب">
+            </div>
+
+            <!-- Floating Card -->
+            <div class="floating-stats-card">
+                <div class="stats-card-text">
+                    <span class="stats-label">إجمالي الطلاب</span>
+                    <span class="stats-value">1,248</span>
+                </div>
+                <div class="stats-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="students-workflow-section">
+    <div class="students-hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <div class="workflow-header">
+            <span class="workflow-badge">سير العمل</span>
+            <h2>إدارة الطلاب بخطوات واضحة ومنظمة</h2>
+            <p>من إضافة الطالب وحتى تتبع حالته والتقارير... كل شيء مترابط ويعمل بسهولة ضمن لوحة واحدة.</p>
+        </div>
+
+        <div class="workflow-steps-container">
+            <div class="workflow-line"></div>
+
+            <div class="workflow-cards">
+                <!-- Card 1 (Active) -->
+                <div class="workflow-card active">
+                    <div class="workflow-icon"><i class="fa-solid fa-user-plus"></i></div>
+                    <h3>إضافة الطالب وتسجيل بياناته</h3>
+                    <ul>
+                        <li>إدخال البيانات الأساسية بسهولة</li>
+                        <li>رفع المستندات المطلوبة</li>
+                        <li>تحديد المرحلة والصف</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon"><i class="fa-solid fa-link"></i></div>
+                    <h3>تنظيم وربط الطالب بالنظام</h3>
+                    <ul>
+                        <li>ربط الطالب بالصف والمرحلة</li>
+                        <li>تحديد الحالة الدراسية</li>
+                        <li>ربط الرسوم تلقائياً</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <h3>تتبع الحالة والتحديثات</h3>
+                    <ul>
+                        <li>تعديل البيانات بسهولة</li>
+                        <li>تحديث الحالة عند الحاجة</li>
+                        <li>إضافة ملاحظات ضمن الملف</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                    <h3>تقارير فورية لكل طالب</h3>
+                    <ul>
+                        <li>ملف شامل لكل طالب</li>
+                        <li>قوائم وتقارير منظمة</li>
+                        <li>تقارير حسب الصف أو المرحلة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-note">
+            <i class="fa-solid fa-list-check"></i>
+            كل خطوة مترابطة وتنعكس تلقائياً في الحضور والمالية.
+        </div>
+
+        <a href="#" class="btn-outline-dark-students">عرض لوحة الطلاب</a>
+    </div>
+</section>
+
+<!-- Dashboard Section -->
+<section class="students-dashboard-section">
+    <div class="blob-shape-1"></div>
+    <div class="blob-shape-2"></div>
+
+    <div class="students-dashboard-container">
+        <!-- Text Content Area (Right in RTL) -->
+        <div class="dashboard-text-area">
+            <div class="dashboard-badge">لوحة الطلاب</div>
+            <h2>لوحة تحكم للطالب تمنحك رؤية شاملة لكل التفاصيل</h2>
+            <p>كل بيانات الطالب في مكان واحد... من الملف الشخصي إلى الحالة الأكاديمية والتقارير ذات الصلة.</p>
+
+            <ul class="dashboard-list">
+                <li><i class="fa-solid fa-check"></i> إجمالي عدد الطلاب حسب المرحلة والصف</li>
+                <li><i class="fa-solid fa-check"></i> تصفية ذكية للبحث والوصول السريع</li>
+                <li><i class="fa-solid fa-check"></i> عرض الحالة الأكاديمية لكل طالب</li>
+                <li><i class="fa-solid fa-check"></i> رابط مباشر للحضور والمالية</li>
+                <li><i class="fa-solid fa-check"></i> تقارير فردية لكل طالب بضغطة زر</li>
+            </ul>
+
+            <div class="dashboard-tags">
+                <span class="d-tag">تنظيم شامل</span>
+                <span class="d-tag">تتبع دقيق</span>
+                <span class="d-tag">وصول فوري</span>
+            </div>
+
+            <div class="dashboard-actions">
+                <a href="{% url 'trial' %}" class="btn-gold-students">اطلب تجربة إدارة الطلاب</a>
+                <a href="#" class="btn-outline-dark-students">عرض نموذج للوحة الطلاب</a>
+            </div>
+            <span class="small-text-dark">تفعيل خلال 24 ساعة - بدون أي التزام</span>
+        </div>
+
+        <!-- Image Area (Left in RTL) -->
+        <div class="dashboard-image-area">
+            <div class="dashboard-mockup-wrapper">
+                <img src="{% static 'images/admin-dashboard.png' %}" alt="لوحة تحكم الطالب" class="dashboard-main-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scenario Section -->
+<section class="students-scenario-section">
+    <div class="scenario-bg-line"></div>
+
+    <div class="scenario-container-students">
+        <!-- Image Area (Left in RTL) -->
+        <div class="scenario-image-area-students">
+            <div class="laptop-mockup">
+                <!-- Using an existing image placeholder -->
+                <img src="{% static 'images/admin-dashboard.png' %}" alt="سيناريو تغيير الحالة"
+                    class="scenario-main-img">
+            </div>
+            <div class="laptop-base-student"></div>
+        </div>
+        <!-- Text Content Area (Right in RTL) -->
+        <div class="scenario-text-area-students">
+            <div class="scenario-badge-students">سيناريو واقعي</div>
+            <h2>ماذا يحدث فور تغيير حالة مجموعة طلاب؟</h2>
+            <p class="scenario-desc-students">في دقائق... اكتشف من قام بتغيير حالته وكيف يؤثر ذلك مباشرة على التقارير
+                واتخاذ القرارات.</p>
+
+            <ul class="scenario-steps-list">
+                <li><span class="step-num">1</span> يتعرف النظام تلقائياً على الطلاب غير النشطين.</li>
+                <li><span class="step-num">2</span> يتم تحديث حالة الطالب فورياً.</li>
+                <li><span class="step-num">3</span> تنعكس التغييرات مباشرة في الحضور والمالية.</li>
+                <li><span class="step-num">4</span> يتم إنشاء تقرير واضح للإدارة.</li>
+            </ul>
+
+            <div class="scenario-tags-students">
+                <span class="s-tag-students"><i class="fa-solid fa-expand"></i> عرض فوري بملء الشاشة</span>
+                <span class="s-tag-students"><i class="fa-solid fa-robot"></i> متابعة بدون تدخل يدوي</span>
+                <span class="s-tag-students"><i class="fa-solid fa-code-merge"></i> لا تعارض بين الأقسام</span>
+            </div>
+
+            <div class="scenario-actions-students">
+                <a href="{% url 'trial' %}" class="btn-gold-students">جرب سيناريو تغيير حالة الطالب بنفسك.</a>
+            </div>
+            <span class="small-text-dark">تفعيل خلال 24 ساعة - بدون التزام.</span>
+        </div>
+
+
+    </div>
+</section>
+
+<!-- Why Different Section -->
+<section class="students-why-different-section">
+    <div class="students-hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <div class="why-header-students">
+            <span class="why-badge-students">ميزة مختلفة</span>
+            <h2>لماذا يعتبر نظام إدارة الطلاب لدينا مختلفاً؟</h2>
+            <p>إنه ليس مجرد إدخال بيانات، بل نظام ديناميكي يربط الطلاب تلقائياً بالحضور، والمالية، والتقارير.</p>
+        </div>
+
+        <div class="why-grid-students">
+            <!-- Card 1 -->
+            <div class="why-card-students">
+                <div class="why-card-icon-students">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                </div>
+                <div class="why-card-content-students">
+                    <h3>ملف طالب ذكي ومترابط</h3>
+                    <ul>
+                        <li>جميع بيانات الطالب في مكان واحد</li>
+                        <li>مرتبط بالحضور، والمالية، والتقارير</li>
+                        <li>أي تغيير يتم انعكاسه تلقائياً داخل النظام</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="why-card-students">
+                <div class="why-card-icon-students">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <div class="why-card-content-students">
+                    <h3>تحديثات فورية لحالة الطالب</h3>
+                    <ul>
+                        <li>نشط / معلق / منقول</li>
+                        <li>تأثير فوري على التقارير</li>
+                        <li>أي تغيير ينعكس فورياً بدون تدخل يدوي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="why-card-students">
+                <div class="why-card-icon-students">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+                <div class="why-card-content-students">
+                    <h3>تقارير فردية لكل طالب</h3>
+                    <ul>
+                        <li>سجل حضور مفصل</li>
+                        <li>سجل مالي كامل</li>
+                        <li>تقرير قابل للطباعة في ثواني</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="why-card-students">
+                <div class="why-card-icon-students">
+                    <i class="fa-regular fa-folder-closed"></i>
+                </div>
+                <div class="why-card-content-students">
+                    <h3>منظم بدون تكرار أو أخطاء</h3>
+                    <ul>
+                        <li>لا يوجد إدخالات مكررة</li>
+                        <li>لا توجد ملفات منفصلة</li>
+                        <li>لا تعارضات بين الأقسام أو التقارير</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="why-note-students">
+            <i class="fa-solid fa-check"></i>
+            أي تغييرات على ملف الطالب تنعكس تلقائياً في الحضور، والمالية، والتقارير.
+        </div>
+
+        <div class="why-footer-actions-students">
+            <a href="#" class="btn-outline-dark-students">عرض نموذج لوحة التحكم الطالب</a>
+            <a href="{% url 'trial' %}" class="btn-gold-students" style="margin-bottom:0;">اطلب تجربة لنظام إدارة
+                الطلاب</a>
+        </div>
+    </div>
+</section>
+
+<!-- Administrative Value Section -->
+<section class="students-admin-value-section">
+    <div class="students-hero-container" style="flex-direction: column; align-items: center; text-align: center;">
+        <div class="admin-value-header">
+            <span class="admin-value-badge">قيمة إدارية</span>
+            <h2>ما الذي تجنيه الإدارة فعليًا من إدارة الطلاب؟</h2>
+            <p>لأن بيانات الطلاب هي أساس كل قرار إداري سليم.</p>
+        </div>
+
+        <div class="admin-value-grid">
+            <!-- Card 1 -->
+            <div class="admin-value-card">
+                <div class="admin-value-icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
+                <div class="admin-value-content">
+                    <h3>سرعة اتخاذ القرار</h3>
+                    <ul>
+                        <li>معرفة حالة أي فصل أو طالب في ثوانٍ</li>
+                        <li>من لوحة واحدة، لا حاجة للبحث</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="admin-value-card">
+                <div class="admin-value-icon">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                <div class="admin-value-content">
+                    <h3>تقليل الأخطاء الإدارية</h3>
+                    <ul>
+                        <li>بيانات موحدة للطالب دون تكرار أو ملفات منفصلة</li>
+                        <li>كل التغييرات تنعكس تلقائيًا في النظام</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="admin-value-card">
+                <div class="admin-value-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+                <div class="admin-value-content">
+                    <h3>توفير وقت الإدارة يوميًا</h3>
+                    <ul>
+                        <li>مهام أقل وخطوات أوضح</li>
+                        <li>الوقت يذهب للتطوير، وليس للمتابعة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="admin-value-card">
+                <div class="admin-value-icon">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </div>
+                <div class="admin-value-content">
+                    <h3>تتبع دقيق للحضور والحالة</h3>
+                    <ul>
+                        <li>أي تغيير في حالة الطالب يظهر فورًا</li>
+                        <li>لا حاجة للمتابعة اليدوية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Before/After Comparison Section -->
+<section class="students-comparison-section">
+    <div class="comparison-blob-1"></div>
+    <div class="comparison-blob-2"></div>
+
+    <div class="comparison-inner">
+        <div class="comparison-header">
+            <div class="comparison-badge">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i> مقارنة واقعية
+            </div>
+            <h2>الفرق الحقيقي قبل وبعد استخدام نظام إدارة الطلاب</h2>
+            <p>في غضون أيام قليلة، تتحول إدارة الطلاب من فوضى وملفات مبعثرة إلى رؤية واضحة وسيطرة كاملة.</p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- After Column (shown first/right in RTL) -->
+            <div class="comparison-col-after">
+                <div class="comparison-col-label label-after">
+                    <i class="fa-solid fa-circle-check"></i> بعد استخدام النظام
+                </div>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check"></i> ملف موحد لكل طالب</li>
+                    <li><i class="fa-solid fa-circle-check"></i> حالة الطالب واضحة في الوقت الفعلي</li>
+                    <li><i class="fa-solid fa-circle-check"></i> ربط مباشر بين الطلاب، الحضور، والمالية</li>
+                    <li><i class="fa-solid fa-circle-check"></i> تقارير جاهزة بضغطة زر</li>
+                    <li><i class="fa-solid fa-circle-check"></i> القرارات تعتمد على بيانات واقعية</li>
+                </ul>
+            </div>
+
+            <!-- Before Column (shown second/left in RTL) -->
+            <div class="comparison-col-before">
+                <div class="comparison-col-label label-before">
+                    <i class="fa-solid fa-triangle-exclamation"></i> قبل استخدام النظام
+                </div>
+                <ul>
+                    <li>بيانات الطلاب مبعثرة في ملفات مختلفة</li>
+                    <li>صعوبة تحديد حالة الطالب بسرعة</li>
+                    <li>الحضور والغياب لا يتم تحديثه بدقة</li>
+                    <li>تقارير يدوية ومتأخرة</li>
+                    <li>القرارات تعتمد على تقدير شخصي</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="comparison-tags">
+            <span class="comp-tag"><i class="fa-solid fa-eye"></i> وضوح إداري</span>
+            <span class="comp-tag"><i class="fa-solid fa-circle-check"></i> تقليل الأخطاء</span>
+            <span class="comp-tag"><i class="fa-solid fa-bullseye"></i> سيطرة استباقية</span>
+        </div>
+
+        <a href="{% url 'trial' %}" class="btn-gold-big">ابدأ بتنظيم طلابك الآن</a>
+        <br>
+        <span class="small-text-dark">تفعيل خلال 24 ساعة - بدون التزام</span>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="students-faq-section">
+    <div class="faq-blob-1"></div>
+    <div class="faq-blob-2"></div>
+
+    <div class="faq-inner">
+        <div class="faq-header">
+            <div class="faq-badge">
+                <i class="fa-regular fa-circle-question"></i> أسئلة شائعة
+            </div>
+            <h2>كل ما تحتاج معرفته عن إدارة الطلاب</h2>
+            <p>إجابات واضحة على أكثر الأسئلة التي تهمك قبل البدء.</p>
+        </div>
+
+        <div class="faq-list">
+            <!-- Question 1 (open by default) -->
+            <div class="faq-item active">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل يمكن استيراد بيانات الطلاب الحالية؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-minus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، يمكنك استيراد البيانات دفعة واحدة، ثم مراجعتها وتعديلها بسهولة
+                        داخل النظام.</div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل النظام مناسب لمدارس كبيرة وصغيرة؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، النظام مرن ومُصمَّم للتعامل مع المدارس بجميع أحجامها بدءاً من
+                        عشرات الطلاب وحتى آلاف الطلاب.</div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل يتم ربط الطلاب بالحضور والماليات تلقائياً؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، بمجرد إضافة الطالب يتم ربطه تلقائياً بسجلات الحضور وبيانات الرسوم
+                        المالية دون أي إدخال يدوي إضافي.</div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل يمكن تتبع حالة الطالب عبر السنوات؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، يحتفظ النظام بسجل كامل لكل طالب عبر السنوات الدراسية، ويمكنك
+                        الاطلاع على تاريخه الكامل بضغطة واحدة.</div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل يمكن تحديد صلاحيات مختلفة للمستخدمين؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، يمكن تحديد صلاحيات مخصصة لكل مستخدم (مدير، معلم، محاسب) للتحكم في
+                        ما يمكنه عرضه أو تعديله.</div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل تعديل بيانات الطالب يؤثر على التقارير؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، أي تعديل على بيانات الطالب ينعكس فوراً على التقارير المرتبطة به،
+                        بما فيها تقارير الحضور والمالية.</div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>كم يستغرق تفعيل النظام؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">يُفعَّل النظام خلال 24 ساعة من تقديم الطلب. يشمل التفعيل إعداد بيانات
+                        مدرستك وتدريب الفريق على الاستخدام.</div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>هل يوجد دعم في حالة حدوث مشكلة؟</span>
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">نعم، لدينا فريق دعم متاح على مدار الأسبوع للرد على استفساراتك وحل أي
+                        مشكلة قد تواجهها بأسرع وقت ممكن.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Box -->
+        <div class="faq-support-box">
+            <div class="faq-support-info">
+                <div class="faq-support-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="faq-support-text">
+                    <h3>لم تجد إجابة لسؤالك؟</h3>
+                    <p>فريقنا يوضح لك كل التفاصيل حسب وضع مدرستك، بدون تعقيد.</p>
+                </div>
+            </div>
+            <a href="#" class="btn-outline-contact">تواصل معنا الآن</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleFaq(btn) {
+        const item = btn.closest('.faq-item');
+        const icon = btn.querySelector('.faq-icon i');
+        const isActive = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.faq-icon i').className = 'fa-solid fa-plus';
+        });
+
+        // Toggle current
+        if (!isActive) {
+            item.classList.add('active');
+            icon.className = 'fa-solid fa-minus';
+        }
+    }
+</script>
+
+<!-- Final CTA Section -->
+<section class="students-final-cta-section">
+    <div class="final-cta-blob-1"></div>
+    <div class="final-cta-blob-2"></div>
+
+    <div class="final-cta-card">
+        <div class="final-cta-badge">
+            <i class="fa-solid fa-bolt"></i> جاهز تبدأ؟
+        </div>
+        <h2 class="final-cta-title">ابدأ تنظيم طلابك خلال 24 ساعة</h2>
+        <p class="final-cta-desc">من أول يوم: ملف موحّد لكل طالب، حالة واضحة، وتقارير جاهزة لإدارة المدرسة، بدون فوضى أو
+            ملفات متفرقة.</p>
+
+        <div class="final-cta-tags">
+            <span class="final-cta-tag"><i class="fa-solid fa-clock"></i> تفعيل خلال 24 ساعة</span>
+            <span class="final-cta-tag"><i class="fa-solid fa-circle-check"></i> بدون التزام</span>
+            <span class="final-cta-tag"><i class="fa-solid fa-headset"></i> دعم مباشر</span>
+        </div>
+
+        <a href="{% url 'trial' %}" class="btn-final-cta">
+            ابدأ تجربة إدارة الطلاب الآن &larr;
+        </a>
+
+        <p class="final-cta-sub-note">سنرتّب لك الإعداد خطوة بخطوة بعد إرسال الطلب.</p>
+        <p class="final-cta-sub-note-2">بدون إدخال بيانات مبدئياً. ابدأ بتجربة سريعة ثم أكمل على راحتك.</p>
+    </div>
+</section>
+
+{% endblock %}

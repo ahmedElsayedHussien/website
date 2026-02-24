@@ -18,3 +18,6 @@ def features(request):
 
 def feature_finance(request):
     return render(request, 'marketing/feature_finance.html')
+
+def feature_students(request):
+    return render(request, 'marketing/feature_students.html')
